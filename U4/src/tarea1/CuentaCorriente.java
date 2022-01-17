@@ -1,14 +1,69 @@
 package tarea1;
 
 public class CuentaCorriente {
+    private static Banco banco;
     private int saldo;
     private int limite_de_descubrimiento;
-    private String nombre;
-    private String dni;
+    public String nombre;
+    String dni;
 
-    public void crearCuenta (String nombre, String dni){
+    CuentaCorriente (String nombre, String dni){
+        this.nombre = nombre;
+        this.dni = dni;
         this.saldo = 0;
         this.limite_de_descubrimiento = -50;
+    }
+
+    public static void setBanco (Banco bn){
+        banco = bn;
+    }
+    public static void cambiarBanco (Banco bn){
+        banco = bn;
+    }
+    public void showInfo (){
+        System.out.println(banco.getNOMBRE());
+        System.out.println(banco.getDireccionCentral());
+        System.out.println("Capital: " + banco.getCapital() + "€");
+        System.out.println("Saldo " + this.saldo);
+        System.out.println("Límite de descubierto " + this.limite_de_descubrimiento);
+        System.out.println("Cliente " + this.nombre);
+        System.out.println(this.dni);
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
+    public int getLimite_de_descubrimiento() {
+        return limite_de_descubrimiento;
+    }
+
+    public void setLimite_de_descubrimiento(int limite_de_descubrimiento) {
+        this.limite_de_descubrimiento = limite_de_descubrimiento;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public static String getNombreBanco (){
+        return banco.getNOMBRE();
     }
 
     public boolean sacarDinero (int dinero){
