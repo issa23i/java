@@ -14,9 +14,7 @@ public class CuentaCorriente {
         this.limite_de_descubrimiento = -50;
     }
 
-    public static void setBanco (Banco bn){
-        banco = bn;
-    }
+    public static void setBanco (Banco bn){ banco = bn; }
     public static void cambiarBanco (Banco bn){
         banco = bn;
     }
