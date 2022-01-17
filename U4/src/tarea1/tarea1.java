@@ -30,13 +30,13 @@ public class tarea1 {
 //        CuentaCorriente.cambiarBanco(bnc);
 //        cc.showInfo();
 
-        SDEFM radio = new SDEFM();
-        System.out.println(radio.getDisplay());
-        radio.up();
-        System.out.println(radio.getDisplay());
-        radio.down();
-        System.out.println(radio.getDisplay());
-        radio.down();
-        System.out.println(radio.getDisplay());
+//        SDEFM radio = new SDEFM();
+//        System.out.println(radio.getDisplay());
+//        radio.up();
+//        System.out.println(radio.getDisplay());
+//        radio.down();
+//        System.out.println(radio.getDisplay());
+//        radio.down();
+//        System.out.println(radio.getDisplay());
     }
 }
