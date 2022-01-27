@@ -28,6 +28,10 @@ public class PilaTabla {
     }
 
     // CIMA
+    public Integer cima (){
+        Integer resultado = getPila()[getPila().length-1];
+        return resultado;
+    }
 
     /*------------ GETTER AND SETTER --------------*/
     public Integer[] getPila() {
