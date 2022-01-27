@@ -7,8 +7,8 @@ public class Escenario {
     private int pixLongitud;
     private int anillos;
     private int gemas;
-    Enemigo.tipoEnemigo[] tiposEnemigos;
-    Enemigo[] enemigos;
+    private Enemigo.tipoEnemigo[] tiposEnemigos;
+    private Enemigo[] enemigos;
 
 
     /*---------- CONSTRUCTOR ------------*/
@@ -65,6 +65,16 @@ public class Escenario {
     public int[] getInfoEscenario () {
         int [] estadoEscenario = {getPixAltura(), getPixLongitud(), getAnillos(), getGemas()};
         return estadoEscenario;
+    }
+
+    public void mostrarEscenario () {
+        System.out.println("Altura (píxeles): " + getPixAltura());
+        System.out.println("Longitud (pixeles): " + getPixLongitud());
+        System.out.println("Número de anillos: " + getAnillos());
+        System.out.println("Número de Gemas: " + getGemas());
+        //tipos de enemigos
+        //lista enemigos
+        voy por aqui ---
     }
 
     /*--------- MÉTODOS GETTER AND SETTER --------*/
