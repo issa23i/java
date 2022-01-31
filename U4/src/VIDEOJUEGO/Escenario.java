@@ -13,12 +13,13 @@ public class Escenario {
 
     /*---------- CONSTRUCTOR ------------*/
 
-    public Escenario (Enemigo.tipoEnemigo [] tipos){
+    public Escenario (){
         this.pixAltura = 100;
         this.pixLongitud = 100;
         this.anillos = 500;
         this.gemas = 2;
         this.enemigos = new Enemigo[10];
+        this.tiposEnemigos = new Enemigo.tipoEnemigo[]{Enemigo.tipoEnemigo.BuzzBomber, Enemigo.tipoEnemigo.Coconut};
     }
 
     public Escenario (int altura, int longitud, int numAnillos, int numGemas, Enemigo.tipoEnemigo [] tipos, Enemigo [] enemigos) {
@@ -30,6 +31,7 @@ public class Escenario {
         this.enemigos = enemigos;
     }
 
+
     /*--------- MÉTODOS --------------*/
     public int getNumTipos() {
         return getTiposEnemigos().length;
@@ -39,16 +41,20 @@ public class Escenario {
         return getEnemigos().length;
     }
 
-    public void newEnemigo (){
+    public Enemigo newEnemigo (){
         // obtener aleatoriamiente un índice para el array de tipos de Enemigos
         int tipoRandom = (int) (Math.random() * (getNumTipos() - 1 + 1) + 1);
         Enemigo.tipoEnemigo tipoEnemigo = getTiposEnemigos()[tipoRandom];
         // Nuevo enemigo
         Enemigo enemigo = new Enemigo(tipoEnemigo);
+        return enemigo;
+    }
+
+    public void addEnemigo(Enemigo ene) {
         // Comprobar que el Array de enemigos no esté lleno
         if (getNumEnemigos() < 10 ){
             this.enemigos = Arrays.copyOf( getEnemigos(), getNumEnemigos() +1);
-            getEnemigos()[getNumEnemigos()-1] = enemigo;
+            getEnemigos()[getNumEnemigos()-1] = ene;
         }
     }
 
@@ -73,8 +79,16 @@ public class Escenario {
         System.out.println("Número de anillos: " + getAnillos());
         System.out.println("Número de Gemas: " + getGemas());
         //tipos de enemigos
+        System.out.println("Tipos de enemigos: ");
+        for (int i = 0; i < getTiposEnemigos().length ; i++) {
+            System.out.print(getTiposEnemigos()[i] + " ");
+        }
         //lista enemigos
-        voy por aqui ---
+        System.out.println("Lista de enemigos: ");
+        for (Enemigo e: getEnemigos()
+             ) {
+            System.out.print(e+ " ");
+        }
     }
 
     /*--------- MÉTODOS GETTER AND SETTER --------*/

@@ -37,6 +37,11 @@ public class Enemigo {
         return estado;
     }
 
+//    public tipoEnemigo enemigotipoRandom(){
+//        int intRandom = (int) (Math.random() * (tipoEnemigo.values().length) + 1);
+//        setTipoE(tipoEnemigo.values()[intRandom]);
+//        return getTipoE();
+//    }
     /*-------- MÉTODOS GETTER AND SETTER -------*/
 
     public tipoEnemigo getTipoE() {

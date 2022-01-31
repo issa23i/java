@@ -6,30 +6,30 @@ public class Videojuego {
     private Calendar horaInicio;
     private Personaje personaje;
     private Escenario escenario;
-    private String ip;
+    private static String ip = "172.740.002";
 
     /*--------- CONSTRUCTOR ------------*/
 
-    public Videojuego (Escenario scenne, String ip){
+    public Videojuego (){
         this.horaInicio = Calendar.getInstance();
         this.personaje = new Personaje();
-        this.escenario = scenne;
-        this.ip = ip;
+        this.escenario = new Escenario();
     }
 
-    public Videojuego (Personaje person, Escenario scenne, String ip){
+    public Videojuego (Personaje person, Escenario scenne){
         this.horaInicio = Calendar.getInstance();
         this.personaje = person;
         this.escenario = scenne;
-        this.ip = ip;
     }
     /*------------ MÉTODOS -----------------*/
 
     public void printEstadoPartida () {
-        System.out.println("Hora de inicio: " + horaInicio.getTime());
+        System.out.println("********** HORA INICIO **********");
+        System.out.println(horaInicio.getTime());
         System.out.println("********** DATOS DEL PERSONAJE **********");
         getPersonaje().mostrarPersonaje();
-
+        System.out.println("********** DATOS DEL ESCENARIO **********");
+        getEscenario().mostrarEscenario();
     }
 
     /*------------- MÉTODOS GETTER AND SETTER -------------*/
