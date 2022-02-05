@@ -9,16 +9,16 @@ public class Main {
 
         // crear dos partidas
         Videojuego partida1 = new Videojuego();
-
-        Enemigo enemigo1 = partida1.getEscenario().newEnemigo();
-        Enemigo enemigo2 = partida1.getEscenario().newEnemigo();
-        Enemigo enemigo3 = partida1.getEscenario().newEnemigo();
-        Enemigo enemigo4 = partida1.getEscenario().newEnemigo();
-        Enemigo enemigo5 = partida1.getEscenario().newEnemigo();
+        Videojuego partida2 = new Videojuego();
+        partida2.setPersonaje(jugador1);
+        Enemigo enemigo1 = partida2.getEscenario().newEnemigo();
+        Enemigo enemigo2 = partida2.getEscenario().newEnemigo();
+        Enemigo enemigo3 = partida2.getEscenario().newEnemigo();
+        Enemigo enemigo4 = partida2.getEscenario().newEnemigo();
+        Enemigo enemigo5 = partida2.getEscenario().newEnemigo();
         Enemigo [] enemigos = {enemigo1, enemigo2, enemigo3, enemigo4, enemigo5};
         Escenario escenario = new Escenario(800, 1920,62,4, tiposE, enemigos);
-
-        Videojuego partida2 = new Videojuego(jugador1, escenario);
+        partida2.setEscenario(escenario);
         partida2.printEstadoPartida();
         partida2.getEscenario().deleteEnemigo(3);
         partida2.printEstadoPartida();
