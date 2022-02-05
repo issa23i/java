@@ -1,12 +1,14 @@
 package Tarea1Herencia;
 
+import java.util.Formatter;
+
 public class Hora {
     private int hora;
     private int minuto;
     /* ---- CONSTRUCTOR ---- */
     public Hora (int hora, int minuto){
-        this.hora = hora;
-        this.minuto = minuto;
+        setHora(hora);
+        setMinuto(minuto);
     }
     /* ---- MÉTODOS ---- */
     public void inc(){
@@ -16,7 +18,9 @@ public class Hora {
 
     @Override
     public String toString(){
-        String cadena = getHora() + ":" + getMinuto();
+        Formatter ftt = new Formatter();
+        Formatter ftt2 = new Formatter();
+        String cadena = String.valueOf(ftt.format("%02d", getHora()) + ":" + ftt2.format("%02d", getMinuto()));
         return cadena;
     }
 
