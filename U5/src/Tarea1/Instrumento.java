@@ -15,6 +15,7 @@ abstract public class Instrumento {
     }
     private static final int MAX_NOTAS = 100;
     private String [] notas;
+
     /* ---- CONSTRUCTOR ---- */
 
     public Instrumento (String [] notas) {

@@ -7,6 +7,5 @@ public class Campana extends Instrumento{
     }
 
     @Override
-    public void interpretar() {
-    }
+    public void interpretar() {}
 }
