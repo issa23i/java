@@ -1,11 +1,11 @@
-package Tarea1Herencia;
+package Tarea1;
 
 import java.util.Formatter;
 
 public class HoraExacta extends Hora {
-private int segundos;
+    private int segundos;
 
-/* ----- CONSTRUCTOR ----- */
+    /* ----- CONSTRUCTOR ----- */
     public HoraExacta( int hora, int minutos, int segundos){
         super(hora,minutos);
         setSegundos(segundos);

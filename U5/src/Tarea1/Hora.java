@@ -1,4 +1,4 @@
-package Tarea1Herencia;
+package Tarea1;
 
 import java.util.Formatter;
 
