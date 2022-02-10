@@ -8,8 +8,11 @@ public class Tarea1 {
 //        System.out.println(h1.toString());
 //        System.out.println(h12.toString());
 //        System.out.println(he.toString());
+//
+//        Caja caja = new Caja(12, 15, 6, Caja.Unidades.m);
+//        System.out.println(caja.toString());
 
-        Caja caja = new Caja(12, 15, 6, Caja.Unidades.m);
-        System.out.println(caja.toString());
+
+
     }
 }
