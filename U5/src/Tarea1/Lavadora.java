@@ -26,6 +26,10 @@ public class Lavadora extends Electrodomestico{
         return super.getPrecioFinal();
     }
 
+    public String toString(){
+        String s = super.toString() + ", " + getCarga();
+        return s;
+    }
 
 
     /* ------ GETTER AND SETTER ---- */
