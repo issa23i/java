@@ -16,10 +16,10 @@ public class Electrodomestico {
         E,
         F
     }
-    Integer precioBase;
-    Colores color;
-    ClasesEnergeticas claseEnergetica;
-    Integer peso;
+    protected Integer precioBase;
+    protected Colores color;
+    protected ClasesEnergeticas claseEnergetica;
+    protected Integer peso;
 
     /* ----- CONSTRUCTOR ---------- */
 
@@ -67,7 +67,7 @@ public class Electrodomestico {
 
     @Override
     public String toString(){
-        String s = " " + getColor() + ", " + getPeso() + ", " + getClaseEnergetica() + ", " + getPrecioFinal();
+        String s = " " + getColor() + ", " + getPeso() + ", " + getClaseEnergetica() + ", precio: " + getPrecioFinal();
         return s;
     }
     /* --------- GETTER AND SETTER ------- */

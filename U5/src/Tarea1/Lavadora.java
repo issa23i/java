@@ -1,6 +1,6 @@
 package Tarea1;
 
-public class Lavadora extends Electrodomestico{
+public class Lavadora extends Electrodomestico implements Comparable {
     private int carga;
 
     /* ---- CONSTRUCTOR ----- */
@@ -17,6 +17,13 @@ public class Lavadora extends Electrodomestico{
         this.carga = carga;
     }
     /* ----- MÉTODOS ----- */
+    @Override
+    public int compareTo(Object o) {
+        if ( !(o instanceof Lavadora)) return 0;
+        Lavadora that = (Lavadora) o;
+        return getCarga() - that.getCarga();
+    }
+
     @Override
     public int getPrecioFinal() {
         super.getPrecioFinal();
@@ -41,4 +48,7 @@ public class Lavadora extends Electrodomestico{
     public void setCarga(int carga) {
         this.carga = carga;
     }
+
+
 }
+
