@@ -28,7 +28,8 @@ public class Tarea2 {
         Cliente c2 = new Cliente (21888555, "Pepa", 22, 2100);
         Cliente c3 = new Cliente(21120110, "Elena", 37, 16000);
         Cliente c4 = new Cliente(22084777, "Andres", 37, 11100);
-        Cliente [] clientes = {c1, c2, c3, c4};
+        Cliente c5 = new Cliente(24888810, "Ana Luz", 14, 1010);
+        Cliente [] clientes = {c1, c2, c3, c4, c5};
         Arrays.sort(clientes);
         for (Cliente c: clientes
              ) {

@@ -30,6 +30,12 @@ public class Cliente implements Comparable {
         return s;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Cliente c = (Cliente) o;
+        if (!(c instanceof Cliente))return 0;
+        return this.getDni()-c.getDni();
+    }
     /* --------- GETTER AND SETTER ---------- */
 
     public Integer getDni() {
@@ -64,10 +70,5 @@ public class Cliente implements Comparable {
         this.saldo = saldo;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        Cliente c = (Cliente) o;
-        if (!(c instanceof Cliente))return 0;
-        return this.getDni()-c.getDni();
-    }
+
 }
