@@ -24,16 +24,23 @@ public class Tarea2 {
 //            pl.Desapilar();
 //        }
 //        System.out.println(pl.toString());
-        Cliente c1 = new Cliente(22124555, "Perico", 22, 2400);
-        Cliente c2 = new Cliente (21888555, "Pepa", 22, 2100);
-        Cliente c3 = new Cliente(21120110, "Elena", 37, 16000);
-        Cliente c4 = new Cliente(22084777, "Andres", 37, 11100);
-        Cliente c5 = new Cliente(24888810, "Ana Luz", 14, 1010);
-        Cliente [] clientes = {c1, c2, c3, c4, c5};
-        Arrays.sort(clientes);
-        for (Cliente c: clientes
-             ) {
-            System.out.println(c.toString());
-        }
+//        Cliente c1 = new Cliente(22124555, "Perico", 22, 2400);
+//        Cliente c2 = new Cliente (21888555, "Pepa", 22, 2100);
+//        Cliente c3 = new Cliente(21120110, "Elena", 37, 16000);
+//        Cliente c4 = new Cliente(22084777, "Andres", 37, 11100);
+//        Cliente c5 = new Cliente(24888810, "Andres", 14, 1010);
+//        Cliente [] clientes = {c1, c2, c3, c4, c5};
+//        Arrays.sort(clientes);
+//        for (Cliente c: clientes
+//             ) {
+//            System.out.println(c.toString());
+//        }
+//        ClienteComparaNombre cn = new ClienteComparaNombre();
+//        System.out.println(cn.compare(c1,c2));
+//        System.out.println(cn.compare(c4,c5));
+//        ClienteComparaEdad ce = new ClienteComparaEdad();
+//        System.out.println(ce.compare(c4,c5));
+//        System.out.println(ce.compare(c1,c2));
+
     }
 }
