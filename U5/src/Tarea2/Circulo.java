@@ -8,7 +8,10 @@ public class Circulo extends Figura{
         this.radio = radio;
         this.area = getArea();
     }
-
+    @Override
+    public String toString(){
+        return "Radio: " + this.getRadio() + ", Area: " + this.getArea() ;
+    }
     @Override
     public Double getArea() {
         setArea(Math.pow(radio,2));
@@ -27,4 +30,5 @@ public class Circulo extends Figura{
     public void setRadio(Double radio) {
         this.radio = radio;
     }
+
 }

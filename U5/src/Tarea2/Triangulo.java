@@ -1,13 +1,16 @@
 package Tarea2;
 
 public class Triangulo extends PoligonoRegular{
-    private final Double lados = 1.0;
-    private Double base;
-    private Double altura;
+    protected static final Double LADOSTRIANGULO = 1.0;
     /* -------- CONSTRUCTOR ------------ */
 
-    public Triangulo(Double base, Double altura, Double lados) {
-        super(base, altura, lados);
+    public Triangulo(Double base, Double altura, Double lados, Colores color) {
+        super(base,altura,lados,color);
+    }
+    @Override
+    public String toString(){
+        return "Base: " + this.getBase()+ ", Altura: " + this.getAltura() + ", Area: " + this.getArea() + ", Color: " +
+                this.getColor();
     }
 
 }

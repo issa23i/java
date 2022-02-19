@@ -1,5 +1,7 @@
 package Tarea2;
 
+import Tarea1.PoligonoComparaColor;
+
 import java.util.Arrays;
 
 public class Tarea2 {
@@ -41,6 +43,33 @@ public class Tarea2 {
 //        ClienteComparaEdad ce = new ClienteComparaEdad();
 //        System.out.println(ce.compare(c4,c5));
 //        System.out.println(ce.compare(c1,c2));
+        Figura Octa = new PoligonoRegular(4.0,3.0,8.0, PoligonoRegular.Colores.Rojo);
+        Figura circ = new Circulo(2.2);
+        Figura cuad = new Cuadrado(2.0,2.0,2.0, PoligonoRegular.Colores.Azul);
+        Figura hexa = new PoligonoRegular(4.0,3.0,6.0, PoligonoRegular.Colores.Verde);
+        Figura tria = new Triangulo(4.0, 2.0,1.0,PoligonoRegular.Colores.Amarillo);
+        Figura fig [] = {circ,cuad,tria,hexa,Octa};
+        System.out.println("------------------------------------");
+        System.out.println("--------- SIN ORDEN ----------------");
 
+        for (Figura f: fig
+             ) {
+            System.out.println(f);
+        }
+        System.out.println("------------------------------------");
+        System.out.println("--------- ORDEN LADOS----------------");
+        Arrays.sort(fig);
+        for (Figura f: fig
+        ) {
+            System.out.println(f);
+        }
+        System.out.println("------------------------------------");
+        System.out.println("--------- ORDEN COLOR ----------------");
+        PoligonoComparaColor pcc = new PoligonoComparaColor();
+        Arrays.sort(fig, pcc);
+        for (Figura f: fig
+        ) {
+            System.out.println(f);
+        }
     }
 }
