@@ -1,0 +1,54 @@
+Actividad 1
+Crear una tabla de 20 números Integer aleatorios entre 1 y 100.
+Implementar un comparador que ordene los números en orden decreciente.
+Utilizarlo para ordenar en sentido decreciente la tabla de enteros.
+
+Actividad 2
+Una cola es otra estructura dinámica como la pila, donde los elementos,
+en vez de apilarse y desapilarse, se encolan y desencolan. La diferencia es que se desencola
+el primer elemento encolado y no el último, como en las colas del autobús o del cine.
+El primero que llega es el primero que sale de la cola  (vamos a suponer que nadie se cuela).
+Por tanto, los elementos se encolan y desencolan en extremos opuestos de la estructura,
+llamados primero (el que está primero y será el próximo en abandonar la cola) y último (el que llegó último).
+Se pide implementar la clase ColaTabla en la que los elementos Integer encolados se guardan en una tabla.
+
+Actividad 3
+Repetir el ejercio anterior usando una Lista para guardar los elementos encolados.
+
+Actividad 4
+Un conjunto es una estructura dinámica de datos como la lista,
+con dos diferencias: en primer lugar, en una lista puede haber elementos
+repetidos,  mientras que en un conjunto, no. Además, en una lista el orden
+de inserión de los elementos puede ser relevante, mientras que en un conjunto solo interesa si un elmento
+pertenece o no al conjunto y no el lugar que ocupa. Se pide implementar la clase Conjunto utilizando
+una lista para almacenar números Integer. En particular, implementar los siguientes métodos:
+
+    - Dos constructores, uno por defecto que cree la tabla con capacidad para
+      10 números, y otro al que se le pasa como argumento el tamaño inicial de la tabla.
+    - Obtener el número de elementos insertados en el conjunto.
+    - Insertar un número en el conjunto. Si ya estaba, no se inserta.
+    - Añadir al conjunto los elementos de otro que se pasa como parámetro.
+    - Eliminar un elemento que se pasa como parámetro. Si no estaba, no se hace nada.
+    - Eliminar del conjunto los elementos de otro que se pasa como parámetro.
+    - Decir si un elemento que se le pasa como parámetro pertenece o no al conjunto.
+    - Representar el conjunto con una cadena de caracteres.
+
+Actividad 5
+Añadir a la clase Conjunto los siguientes métodos estáticos:
+
+static boolean incluido(Conjunto c1, Conjunto c2), que devuelve true si c1 está incluido en c2,
+es decir, si todos los elementos de c1 están también en c2.
+
+static Conjunto union(Conjunto c1, Conjunto c2), que devuelve un nuevo conjunto con todos
+los elementos que están en c1 o en c2 (elementos comunes y no comunes)
+
+static interseccion(Conjunto c1, Conjunto c2), que devuelve un nuevo conjunto con todos
+los elementos que están en c1 y en c2 a la vez (elementos comunes)
+
+static diferencia(Conjunto c1, Conjunto c2), que devuelve un nuevo conjunto con todos
+los elementos que están en c1, pero no en c2
+
+Actividad 6
+Implementar la interfaz Cola e implementarla en las clases ColaTabla y ColaLista.
+Utilizando una referencia del tipo Cola y una de las implementaciones,
+encolar 10 números entre 1 y 100, generados aleatoriamente y desencolarlos para mostrarlos por pantalla.
