@@ -6,33 +6,39 @@ import java.util.Objects;
 public class Conjunto {
     private Integer [] conjunto;
     private Integer largo;
+    private Integer indice;
 
     /* ---- CONSTRUCTOR ------ */
 
     public Conjunto(){
-        this.largo = 10; // ¿en qué momento se almacena esta variable? al declararla??, o al construir el objeto???
-        this.conjunto = new Integer[this.largo]; // ¿puedo utilizar aguí en vez de this.largo , getLargo()???
-        // qué sería más correcto semánticamente?
+        this.indice = 0;
+        this.largo = 10;
+        this.conjunto = new Integer[largo];
+
     }
     public Conjunto(Integer largo){
+        this.indice = 0;
         this.largo = largo;
-        this.conjunto = new Integer[this.largo];
+        this.conjunto = new Integer[largo];
     }
 
     /* ---- MÉTODOS ---- */
 
     public void insertarNum(){
         EnteroAleatorio entA = new EnteroAleatorio();
-        Integer num = entA.getEnteroA(); // si esta variable cambia, por ejemplo con setEnteroA(), la próxima ocurrencia de num lo tendrá en cuenta?
-        // setEnteroA();
-        // la variable num ha cambiado ???? o es necesario num = entA.getEnteroA()??
-        setLargo(getLargo()+1);
-        Integer [] tmp = Arrays.copyOf(getConjunto(), getLargo());
+        Integer num = entA.getEnteroA();
+        Integer [] tmp;
+        if (getIndice() < getLargo()-1){
+            tmp = Arrays.copyOf(getConjunto(), getLargo());
+        } else {
+            tmp = Arrays.copyOf(getConjunto(), getLargo()+1);
+        }
         while (repetido(num)){
             entA.setEnteroA();
-            num = entA.getEnteroA(); // es necesaria esta sentencia?? o con la anterior ya cambia num???
+            num = entA.getEnteroA();
         }
-        tmp[getLargo()-1] = num;
+        tmp[getIndice()] = num;
+        setIndice(getIndice()+1);
         setConjunto(tmp);
     }
 
@@ -46,33 +52,68 @@ public class Conjunto {
     }
 
     public void insertarConj(Integer [] otroConjunto){
-        Integer [] tmp = Arrays.copyOf(getConjunto(),getLargo());  // estudiar Arrays.compare
-        for (Integer n:otroConjunto
-             ) {
+        Integer [] tmp = Arrays.copyOf(getConjunto(), getLargo());;
+
+        for (Integer n:otroConjunto) {
             if ( ! repetido(n) ){
-                setLargo(getLargo()+1);
-                tmp = Arrays.copyOf(getConjunto(), getLargo());
-                tmp[getLargo()-1] = n;
+                if (getIndice() < getLargo()-1){
+                } else {
+                    tmp = Arrays.copyOf(tmp, tmp.length+1);
+                }
+                tmp[getIndice()] = n;
+                setIndice(getIndice()+1);
             }
         }
+        setConjunto(tmp);
     }
 
     public void eliminarNum ( Integer num){
-        if ( ! repetido(num)) return; // es correcto semánticamente??
+        if ( ! repetido(num)) return;
         Integer indice = Arrays.binarySearch(getConjunto(),num);
-        Integer [] tmp = Arrays.copyOf(getConjunto(),getLargo());
-        for (int i = 0; i < getLargo(); i++) {
+        Integer [] tmp = new Integer[getLargo()];
+        for (int i = 0; i < getLargo()-1; i++) {
             if (i < indice) {
                 tmp[i] = getConjunto()[i];
             } else {
-                tmp[i] = getConjunto()[i+1]
+                tmp[i] = getConjunto()[i+1];
+            }
+        }
+        setIndice(getIndice()-1);
+        tmp[getIndice()] = null;
+        setConjunto(tmp);
+    }
+
+    public void eliminarConjunto ( Integer [] otroConjunto){
+        for (Integer n:otroConjunto
+             ) {
+            if (repetido(n)){
+                eliminarNum(n);
             }
         }
     }
+
+    @Override
+    public String toString(){
+        String s = "";
+        for (Integer n:getConjunto()
+             ) {
+            s += n + " ";
+        }
+        s += "\n";
+        return s;
+    }
     /* ---- GETTER AND SETTER --------- */
 
+    public Integer getIndice() {
+        return indice;
+    }
+
+    public void setIndice(Integer indice) {
+        this.indice = indice;
+    }
+
     public Integer[] getConjunto() {
-        return conjunto;
+        return this.conjunto;
     }
 
     public void setConjunto(Integer[] conjunto) {
@@ -80,7 +121,7 @@ public class Conjunto {
     }
 
     public Integer getLargo() {
-        return largo;
+        return getConjunto().length;
     }
 
     public void setLargo(Integer largo) {
