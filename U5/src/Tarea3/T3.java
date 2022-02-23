@@ -20,10 +20,10 @@ public class T3 {
         System.out.println("ColaTabla");
         System.out.println(ct);
         System.out.println("ColaTabla Encolar");
-        ct.Encolar();
+        ct.encolar(3);
         System.out.println(ct);
         System.out.println("ColaTabla Desencolar");
-        ct.Desencolar();
+        ct.desencolar();
         System.out.println(ct);
         ct.printColaLista();
     }

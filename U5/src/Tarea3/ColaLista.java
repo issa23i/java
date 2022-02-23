@@ -1,29 +1,37 @@
 package Tarea3;
 
+import java.util.Arrays;
 
-import java.util.ArrayList;
-
-public class ColaLista {
-    private ArrayList<Integer> lista;
+public class ColaLista extends ColaTabla{
+    private Integer [] lista;
     private int largo;
+    private Integer [] cola;
+    private Integer enteroAleatorio, primero, ultimo;
     public ColaLista (){
+        super();
         this.largo = 0;
-        this.lista = new ArrayList<Integer>(largo);
+        this.lista = new Integer[getLargo()];
     }
 
     public void anyadir(Integer entero){
-        lista.add(entero);
-        largo++;
+        Integer [] l = Arrays.copyOf(lista, getLargo()+1);
+        l[getLargo()] = entero;
+        this.largo++;
+    }
+
+    @Override
+    public Integer desencolar() {
+        Integer resultado = getCola()[0];
+        Integer [] temp = new Integer[getLenght()-1];
+        for (int i = 0; i < getLenght()-1; i++) {
+            temp[i] = getCola()[i+1];
+        }
+        setCola(temp);
+        anyadir(resultado);
+        return resultado;
     }
     public void imprimir(){
         System.out.println(lista.toString());
-    }
-    public ArrayList<Integer> getLista() {
-        return lista;
-    }
-
-    public void setLista(ArrayList<Integer> lista) {
-        this.lista = lista;
     }
 
     public int getLargo() {
@@ -32,5 +40,13 @@ public class ColaLista {
 
     public void setLargo(int largo) {
         this.largo = largo;
+    }
+
+    public Integer[] getLista() {
+        return lista;
+    }
+
+    public void setLista(Integer[] lista) {
+        this.lista = lista;
     }
 }

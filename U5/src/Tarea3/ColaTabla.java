@@ -2,38 +2,36 @@ package Tarea3;
 
 import java.util.Arrays;
 
-public class ColaTabla extends EnteroAleatorio {
+public class ColaTabla extends EnteroAleatorio implements Cola {
     private Integer [] cola;
     private Integer enteroAleatorio, primero, ultimo;
-    private ColaLista cl;
     public ColaTabla () {
         super();
         this.enteroAleatorio = getEnteroAleatorio();
         this.cola = super.setEnterosA();
         this.primero = getPrimero();
         this.ultimo = getUltimo();
-        this.cl = new ColaLista();
     }
 
-    public void Encolar (){
+    @Override
+    public void encolar(Integer entero) {
         Integer [] temp = Arrays.copyOf(this.getCola(), this.getLenght() + 1);
-        Integer tp = super.setEnteroA();
+        Integer tp = entero;
         temp[this.getLenght()] = tp;
         this.setCola(temp);
-        cl.anyadir(tp);
     }
 
-    public void Desencolar (){
+    @Override
+    public Integer desencolar() {
+        Integer resultado = getCola()[0];
         Integer [] temp = new Integer[getLenght()-1];
         for (int i = 0; i < getLenght()-1; i++) {
             temp[i] = getCola()[i+1];
         }
         setCola(temp);
+        return resultado;
     }
 
-    public void printColaLista(){
-        cl.imprimir();
-    }
     public int getLenght(){
         return getCola().length;
     }
