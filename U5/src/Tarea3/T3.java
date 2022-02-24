@@ -33,7 +33,7 @@ public class T3 {
         c.insertarNum();
         c.insertarNum();
         System.out.println(c.toString());
-        Integer [] ns= {3,16,15,16,25};
+        Integer [] ns= {3,16,15,16,25,38,36,45};
         c.insertarConj(ns);
         System.out.println(c.toString());
     }

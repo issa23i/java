@@ -33,7 +33,7 @@ public class Conjunto {
         } else {
             tmp = Arrays.copyOf(getConjunto(), getLargo()+1);
         }
-        while (repetido(num)){
+        while (equals(num)){
             entA.setEnteroA();
             num = entA.getEnteroA();
         }
@@ -42,40 +42,63 @@ public class Conjunto {
         setConjunto(tmp);
     }
 
-    public Boolean repetido(Integer num){
+    @Override
+    public boolean equals(Object obj){
+        Integer num = (Integer) obj;
         boolean repetido = false;
         for (Integer n: getConjunto()
-             ) {
+        ) {
             repetido = Objects.equals(n, num);
+            if (repetido){
+                return repetido;
+            }
+
         }
         return repetido;
     }
 
+    public Integer [] quitarRepetidos (Integer [] conjunto){
+        for (int i = 0; i < conjunto.length; i++) {
+            for (int j = 0; j < conjunto.length; j++) {
+                if (i != j) {
+                    if (conjunto[i] == conjunto[j]){
+                        eliminarNum(conjunto[i],conjunto);
+                        setIndice(8);
+                        conjunto = Arrays.copyOf(getConjunto(),getLargo()-1);
+                        setConjunto(conjunto);
+                    }
+                }
+            }
+        }
+        return conjunto;
+    }
     public void insertarConj(Integer [] otroConjunto){
-        Integer [] tmp = Arrays.copyOf(getConjunto(), getLargo());;
-
+        Integer [] tmp = Arrays.copyOf(getConjunto(), getLargo());
         for (Integer n:otroConjunto) {
-            if ( ! repetido(n) ){
+            if ( ! equals(n) ){
                 if (getIndice() < getLargo()-1){
                 } else {
-                    tmp = Arrays.copyOf(tmp, tmp.length+1);
+                    if(tmp.length-1 < getIndice()){
+                        tmp = Arrays.copyOf(tmp, tmp.length+1);
+                    }
                 }
                 tmp[getIndice()] = n;
                 setIndice(getIndice()+1);
             }
         }
-        setConjunto(tmp);
+       setConjunto(tmp);
+       setConjunto(quitarRepetidos(getConjunto()));
     }
 
-    public void eliminarNum ( Integer num){
-        if ( ! repetido(num)) return;
-        Integer indice = Arrays.binarySearch(getConjunto(),num);
+    public void eliminarNum ( Integer num, Integer [] conjunto){
+        if ( (! equals(num)) || num == null) return;
+        Integer indice = Arrays.binarySearch(conjunto,num);
         Integer [] tmp = new Integer[getLargo()];
         for (int i = 0; i < getLargo()-1; i++) {
             if (i < indice) {
-                tmp[i] = getConjunto()[i];
+                tmp[i] = conjunto[i];
             } else {
-                tmp[i] = getConjunto()[i+1];
+                tmp[i] = conjunto[i+1];
             }
         }
         setIndice(getIndice()-1);
@@ -86,11 +109,13 @@ public class Conjunto {
     public void eliminarConjunto ( Integer [] otroConjunto){
         for (Integer n:otroConjunto
              ) {
-            if (repetido(n)){
-                eliminarNum(n);
+            if (equals(n)){
+                eliminarNum(n, otroConjunto);
             }
         }
     }
+
+
 
     @Override
     public String toString(){
@@ -116,15 +141,11 @@ public class Conjunto {
         return this.conjunto;
     }
 
-    public void setConjunto(Integer[] conjunto) {
-        this.conjunto = conjunto;
+    public void setConjunto(Integer[] conj) {
+        this.conjunto = conj;
     }
 
     public Integer getLargo() {
         return getConjunto().length;
-    }
-
-    public void setLargo(Integer largo) {
-        this.largo = largo;
     }
 }
