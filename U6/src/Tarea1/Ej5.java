@@ -1,7 +1,6 @@
-///*
 //Actividad5: En el archivo numeros.txt disponemos de una serie de números (uno por cada línea).
 //Diseñar un programa que procese el fichero y nos muestre el menor y el mayor.
-// */
+
 package Tarea1;
 
 import java.io.BufferedReader;
