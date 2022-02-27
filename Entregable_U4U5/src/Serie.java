@@ -23,13 +23,27 @@ public class Serie extends Multimedia implements Reproducible{
     public boolean eliminar_capitulo(String capitulo) {
         boolean eliminado = false;
         // busca capitulo
-        for (int i = 0; i < capitulos.length; i++) {
-            if (capitulos[i].equals(capitulo)){ // si coincide
-                // lo elimina
-                capitulos [i] = null;
-                eliminado = true;
+        int indice = Arrays.binarySearch(getCapitulos(), capitulo);
+        if (indice<0){
+            return false;
+        } else {
+            // elimina capitulo
+            String [] capis = Arrays.copyOf(getCapitulos(), getCapitulos().length-1); // creamos una copia con una posicion menos
+            int contador = capis.length;
+            while (contador > indice-1) {// empezando por el final, hasta el índice
+                capis[contador-1] = getCapitulos()[contador];
+                contador --;
             }
+            setCapitulos(capis); // pasamos el nuevo Array
+            eliminado = true;
         }
+//        for (int i = 0; i < capitulos.length; i++) {
+//            if (capitulos[i].equals(capitulo)){ // si coincide
+//                // lo elimina
+//                capitulos [i] = null;
+//                eliminado = true;
+//            }
+//        }
         // devuelve boolean
         return eliminado;
     }
