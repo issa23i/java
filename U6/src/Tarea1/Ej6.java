@@ -16,12 +16,8 @@ public class Ej6 {
         Integer contador = 0;
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(nombreFichero,true));
-            System.out.println("Firme aquí: ");
-            firma = sc.nextLine();
-            bw.newLine();
-            bw.write(firma);
-            bw.close();
             BufferedReader br = new BufferedReader(new FileReader(nombreFichero));
+            // leer firmas
             while (firma!=null){
                 firma = br.readLine();
                 if (firma!=null) {
@@ -31,13 +27,20 @@ public class Ej6 {
                 }
             }
             br.close();
+            // leer entrada teclado
+            System.out.println("Firme aquí: ");
+            firma = sc.nextLine();
+            // buscar firma existente
+            Arrays.sort(firmas);
+            Integer firmado = Arrays.binarySearch(firmas, firma);
+            // escribir firma si no está
+            if (firmado < 0) {
+                bw.newLine();
+                bw.write(firma);
+            }
+            bw.close();
         } catch (IOException ioException){
             System.out.println("No se pudo acceder al fichero " + nombreFichero);
         }
-        for (String s:firmas
-             ) {
-            System.out.println(s);
-        }
-
     }
 }
