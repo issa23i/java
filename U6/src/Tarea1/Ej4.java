@@ -32,6 +32,7 @@ public class Ej4 {
                 lineas++;
                 linea = br.readLine();
             }
+            palabras++;
         } catch (IOException ioException) {
             System.out.println("No se pudo leer el fichero");
         }
