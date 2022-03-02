@@ -28,7 +28,7 @@ public class Ej4 {
             n--;
         } while (n != 0);
         try(ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(binario))){
-            out.writeObject(db);
+            out.writeObject(dbs);
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("No se encontró el archivo" + fileNotFoundException.toString());
         } catch (IOException e) {
