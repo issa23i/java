@@ -26,7 +26,6 @@ public class Ej4 {
             // insertar en la tabla
             dbs[dbs.length-n] = db;
             n--;
-
         } while (n != 0);
         try(ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(binario))){
             out.writeObject(db);
