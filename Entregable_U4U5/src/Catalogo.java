@@ -24,16 +24,34 @@ public class Catalogo {
     public boolean eliminar_multimedia(Multimedia elemento) {
         // elimina el elemento multimedia que se le pasa
         boolean eliminado = false;
+
+//        for (int i = 0; i < productos.length; i++) {
+//            if (productos[i].equals(elemento)){ // si coincide
+//                // lo elimina
+//                productos [i] = null;
+//                eliminado = true;
+//            }
+//        }
         // busca capitulo
-        for (int i = 0; i < productos.length; i++) {
-            if (productos[i].equals(elemento)){ // si coincide
-                // lo elimina
-                productos [i] = null;
-                eliminado = true;
+        int indice = Arrays.binarySearch(getProductos(), elemento);
+        if (indice<0){
+            return false;
+        } else {
+            // elimina capitulo
+            Multimedia [] multis = Arrays.copyOf(getProductos(), getProductos().length-1); // creamos una copia con una posicion menos
+            int contador = multis.length;
+            while (contador > indice-1) {// empezando por el final, hasta el índice
+                multis[contador-1] = getProductos()[contador];
+                contador --;
             }
+            setProductos(multis); // pasamos el nuevo Array
+            eliminado = true;
         }
         // devuelve boolean
         return eliminado;
+    }
+    public void ordenar_por_id(){
+        Arrays.sort(getProductos());
     }
 
     public void ordenar_por_anyo(){
@@ -42,7 +60,8 @@ public class Catalogo {
     }
 
     public void ordenar_por_titulo(){
-        Arrays.sort(getProductos());
+        ComparaPorTitulo compTitulo = new ComparaPorTitulo();
+        Arrays.sort(getProductos(),compTitulo);
     }
 
     @Override

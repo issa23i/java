@@ -8,7 +8,7 @@ public class Principal {
         Pelicula peli5 = new Pelicula("La tormenta", "Spielberg", 2010, 125, "Magallanes","EEUU" );
 
         String [] capitulos1 = {"No mires atrás", "Vulcano", "Honor"};
-        String [] capitulos2 = {"No me va a dar tiempo", "buscando a Nemo", "Encontrados"};
+        String [] capitulos2 = {"No me va a dar tiempo", "buscando a Nemo", "Encontrados", "La Sirenita", "Adiós, Baby, adiós", "El Tren"};
         String capitulo = "Fieras";
         Serie serie = new Serie("El cuento de la criada", "un autor", 2016,3,capitulos1);
         Serie serie2 = new Serie("Succesion", "pues otro autor", 2020, 3, capitulos2);
@@ -41,8 +41,18 @@ public class Principal {
         System.out.println(catalogo.numero_de_elementos());
         catalogo.add_multimedia(peli2);
         System.out.println(catalogo.toString());
-
-
+        System.out.println("--- por  id -------");
+        catalogo.ordenar_por_id();
+        System.out.println(catalogo.toString());
+        System.out.println("--- por  año -------");
+        catalogo.ordenar_por_anyo();
+        System.out.println(catalogo.toString());
+        System.out.println("--- por  titulo -------");
+        catalogo.ordenar_por_titulo();
+        System.out.println(catalogo.toString());
+        System.out.println("--- eliminar -------");
+        catalogo.eliminar_multimedia(multimedia2);
+        System.out.println(catalogo.toString());
 
 
     }

@@ -25,7 +25,7 @@ public class Ej3 {
             }
             br.close();
             String destino = "copia_de_" + ficheroFuente;
-            BufferedWriter bw = new BufferedWriter(new FileWriter(destino, true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(destino, false));
             bw.write(texto);
             bw.write(texto);
             bw.close();

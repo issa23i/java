@@ -1,11 +1,13 @@
-abstract class Multimedia implements Comparable{
+abstract class Multimedia implements Comparable {
     private String titulo, autor;
     private Integer anyo;
+    private Integer numId;
     protected static Integer id = 0;
 
     /* ------ CONTRUCTOR -------- */
     public Multimedia(String titulo, String autor, Integer anyo){
         id++;
+        this.numId  = getId();
         this.titulo = titulo;
         this.autor = autor;
         this.anyo = anyo;
@@ -16,14 +18,14 @@ abstract class Multimedia implements Comparable{
 
     @Override
     public String toString () {
-        return "Id: " + getId() + "\nTítulo : " + getTitulo() + "\nAutor :  " + getAutor() +
+        return "Id: " + getNumId() + "\nTítulo : " + getTitulo() + "\nAutor :  " + getAutor() +
                 "\nAño :  " + getAnyo() ;
     }
 
     @Override
-    public int compareTo(Object ob) { // comparar por titulo
+    public int compareTo(Object ob) { // comparar por id
         Multimedia that = (Multimedia) ob;
-        return this.getTitulo().compareTo(that.getTitulo());
+        return this.getNumId().compareTo(that.getNumId());
     }
     /* ------- GETTER AND SETTER ---- */
 
@@ -55,4 +57,7 @@ abstract class Multimedia implements Comparable{
         return id;
     }
 
+    public Integer getNumId() {
+        return numId;
+    }
 }

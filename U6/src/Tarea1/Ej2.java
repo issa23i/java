@@ -8,17 +8,18 @@ import java.util.Scanner;
 
 public class Ej2 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca nu nombre: ");
+        String nombre = sc.nextLine();
+        System.out.println("Introduzca su edad");
+        String edad = sc.nextLine();
+        String file = "datos.txt";
         try {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Introduzca nu nombre: ");
-            String nombre = sc.nextLine();
-            System.out.println("Introduzca su edad");
-            String edad = sc.nextLine();
-            String file = "datos.txt";
             BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
             BufferedReader br = new BufferedReader(new FileReader(file));
+            bw.write(nombre);
             bw.newLine();
-            bw.write("" + nombre + " " + edad);
+            bw.write(edad);
             bw.close();
             String texto = "";
             String leer = br.readLine();

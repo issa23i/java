@@ -7,13 +7,13 @@ import java.util.Scanner;
 
 public class Ej1 {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca un nombre de archivo: ");
+        String file = sc.nextLine();
+        if (file.isEmpty()){
+            file = "prueba.txt";
+        }
         try {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Introduzca un nombre de archivo: ");
-            String file = sc.nextLine();
-            if (file.equals("")){
-                file = "prueba.txt";
-            }
             BufferedReader br = new BufferedReader(new FileReader(file));
             String texto = "";
             String sigLinea = br.readLine();
