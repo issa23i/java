@@ -1,0 +1,34 @@
+Ejercicio 1
+La empresa FARA quiere desarrollar una aplicación para guardar toda la información logística de la ropa que debe repartir a lo largo de España. Para ello tiene una flota de vehículos de los que debe conocer la siguiente información:
+
+Su matrícula.
+La carga máxima de puede soportar.
+El conductor.
+Todo los vehículos deben implementar obligatoriamente un método llamado descargar() .
+
+Esta clase no se podrá instanciar pero si que podremos instanciar CamionCajas de los que necesitaremos guardar adicionalmente la lista de cajas que contiene y CamionPerchas de los que guardaremos la lista de prendaColgada que se han colgado en perchas.
+
+Todas las cajas transportadas por los CamionCajas tienen una capacidad máxima de 5 prendas de ropa y será identificado por un id.
+
+Todas las Prendas de ropa viene identificadas por el precio, por el nombre,por su código de barras, su peso. Si es ropa que se debe colgar de una percha (prendaColgada) necesitaremos también conocer la altura a la que debe colgar la barra para que la ropa no toque el suelo una vez colgada.
+
+Para realizar en todo momento una buena gestión de la empresa debo conocer en todo momento el número de prendas de ropa que tengo en el sistema. Da igual el tipo.
+
+Del conductor necesitaremos saber su nombre, sus apellidos y su NSS (número de seguridad social).
+
+En todo momento deberé poder:
+
+Añadir y borrar una caja a un CamiónCajas
+Añádir y borrar prendas a una caja.
+Añadir y borrar prendas Colgadas a un CamiónPerchas.
+Cuando se llame al método descargar:
+
+Si es un CamiónCajas mostrará por la pantalla: "Descargando X cajas y Y prendas".
+Si es un CamiónPerchas mostrará por la pantalla "Descargando X Prendas"
+Se deberá implementar además los siguientes métodos donde consideres necesario.
+
+Se deberá poder ordenar los CamionCaja por el número de cajas que contienen y por el peso que transporta.
+Se deberá poder ordenar los CamionPerchas por el número de prendas colgadas que contienen. De momento la ropa en general se puede devolver() que mostrará por pantalla "Devolviendo la prensa con nombre X y precio Y". Se podrá doblar() mostrando "La prenda X se puede doblar" en caso de Prenda general y "La prenda X no se puede doblar" en caso de que sea PrendaColgada.Y además en el caso de PrendaColgada tendremos el método colgar() que mostrará "La prenda X está colgada".
+Como FARA tiene prevista vender en un futuro más productos que ropa, estos comportamientos devolver(),doblar() y colgar() deberán poder aplicarse a otros productos en caso de que sea necesario.
+
+Crear en el Main los objetos necesarios para probar todos los métodos a excepción de los Getters y los Setters.
