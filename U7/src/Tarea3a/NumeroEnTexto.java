@@ -35,7 +35,7 @@ public class NumeroEnTexto {
         decena.put('7', "setenta");
         decena.put('8', "ochenta");
         decena.put('9', "noventa");
-        centena.put('1', "cien");
+        centena.put('1', "ciento");
         centena.put('2', "doscientos");
         centena.put('3', "trecientos");
         centena.put('4', "cuatrocientos");
@@ -91,10 +91,30 @@ public class NumeroEnTexto {
             s = unidad.get(n.toString().charAt(0));
         } else if (n == 10 || n % 10 == 0) {
             s = decena.get(c[0]);
+        } else if (n > 10 && n < 16) {
+            switch (n) {
+                case 11 :
+                    s = "once";
+                    break;
+                case 12 :
+                    s = "doce";
+                    break;
+                case 13 :
+                    s = "trece";
+                    break;
+                case 14 :
+                    s = "catorce";
+                    break;
+                case 15 :
+                    s = "quince";
+                    break;
+                default:
+                    break;
+            }
         } else if (n > 20 && n < 30) {
             s = "veinti" + unidad.get(c[1]);
         } else {
-            s = decena.get(c[0]) + " " + unidad.get(c[1]);
+            s = decena.get(c[0]) + " y " + unidad.get(c[1]);
         }
         return s;
     }
@@ -149,7 +169,7 @@ public class NumeroEnTexto {
     private String millon(Integer n) {
         String s;
         char[] c = n.toString().toCharArray();
-        s = c[0] == 1 ? "un mill�n " : unidad.get(c[0]) + " millones ";
+        s = c[0] == '1' ? "un millón " : unidad.get(c[0]) + " millones ";
         int d = Integer.parseInt(c[1] + "" + c[2] + "" + c[3] + c[4] + "" + c[5] + "" + c[6]);
         s += centena_mil(d);
         return s;

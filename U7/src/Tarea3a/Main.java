@@ -9,6 +9,5 @@ public class Main {
         System.out.println(numText.numberToText(345));
         System.out.println(numText.numberToText(14));
         System.out.println(numText.numberToText(118));
-        System.out.println(numText.numberToText(1081443));
     }
 }
