@@ -1,0 +1,29 @@
+Tarea 3b - Map (I)
+Actividad 1: Crea un HashMap cuya clave sea un Integer,
+y cuyos valores sean los nombres de algunos de tus compañeros.
+La clave ha de calcularse mediante un método que reciba un String que represente el dni,
+y devuelva la suma de sus dígitos.
+46221877D -> 4+6+2+2+1+8+7+7=37
+Una vez guardados los elementos, deben mostrarse todos los elementos (clave-valor) del HasMap.
+
+Actividad 2: Añada al programa anterior la siguiente funcionalidad.
+El programa pedirá al usuario un dni, calculará la clave que ha de consultar,
+comprobará que dicha clave existe, y, en tal caso, mostrará el valor asociado a esa clave en el HashMap.
+
+Actividad 3: Recorre el Map anterior, extrayendo cada pareja clave-valor,
+y mostrándolas, de tal forma que se escriban los datos así:
+La clave 37 está asociada al nombre "Pedro Gonzalez Jimenez".
+La clave ... está asociada al nombre ....
+
+Actividad 4: Crea una clase llamada Traductor, que contenga un atributo
+llamado "diccionario" de tipo HashMap y se comporte de esta forma:
+Al crear el objeto Traductor, el atributo diccionario debe ser cargado
+con la información de un archivo de texto cuyo nombre se le pasará por parámetro al constructor.
+Este archivo debe contener varias palabras en español y su traducción al inglés,
+de tal forma que las palabras en español sean la clave, y las que estén en inglés, el valor.
+Por ejemplo:
+hola, hello
+mundo, world
+gracias, thanks
+adios, bye
+Crear un método que reciba una palabra o una frase, y devuelva la cadena traducida al inglés.
