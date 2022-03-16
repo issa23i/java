@@ -19,7 +19,14 @@ public class Ej2 {
 
         System.out.println("Introduzca un número de dni a buscar: ");
         dni = sc.nextLine();
-        Integer clave =
+        Integer clave = getDni(dni);
+
+        if(compas.get(clave) != null) {
+            System.out.println(compas.get(clave));
+        } else {
+            System.out.println("Ese compa no existe");
+        }
+
 
         System.out.println(compas);
     }
