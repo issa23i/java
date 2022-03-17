@@ -8,6 +8,7 @@ public class Empleado extends Persona {
         this.sueldo = sueldo;
     }
 
+
     public double getSueldo() {
         return sueldo;
     }
