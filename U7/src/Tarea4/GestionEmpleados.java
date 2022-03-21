@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
-public class GestionEmpleados {
+public class GestionEmpleados implements Serializable {
 
     /* -------- ATRIBUTOS --------- */
 
@@ -15,19 +15,34 @@ public class GestionEmpleados {
     /* ------- CONSTRUCTOR --------- */
 
     public GestionEmpleados( )  throws FileNotFoundException, ClassNotFoundException, IOException {
-        String entradaTeclado = "";
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Quiere insertar los empleados por fichero ('f')? ¿O insertar la lista de empleados ('i')");
-        entradaTeclado = sc.next();
-        if (entradaTeclado.equals("f")) {
-            leerArchivo();
-        } else if (entradaTeclado.equals("i")) {
-            mapaEmpleados= introducirEmpleados();
-        }
-        ... // quitar de aquí el menu
+        menu();
     }
 
     /* ------- MÉTODOS --------- */
+
+    public void menu () throws FileNotFoundException, ClassNotFoundException, IOException {
+        String entradaTeclado = "";
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca una de las siguientes opciones: ");
+        System.out.println("Cargar fichero de empleados ('f')");
+        System.out.println("Insertar empleados manualmente ('i')");
+        System.out.println("Modificar un empleado ('m')");
+        System.out.println("Visualizar empleado ('v')");
+        System.out.println("Borrar empleado ('b')");
+        entradaTeclado = sc.next();
+        switch (entradaTeclado){
+            case "f":
+                leerArchivo();
+                break;
+            case "i":
+                mapaEmpleados = introducirEmpleados();
+                break;
+            case "m":
+                //cambiar menu
+
+
+        }
+    }
 
     public void modificarEmpleado (String dni ) {
         String nombre;
@@ -49,6 +64,8 @@ public class GestionEmpleados {
         sueldo = sc.nextDouble();
         e.setSueldo(sueldo);
 
+        //// Mapaempleados.put(dni) no lo mete nuevo, lo machaca y modifica0
+
     }
 
     public LinkedHashMap<String, Empleado> introducirEmpleados() {
@@ -58,7 +75,6 @@ public class GestionEmpleados {
         String dni, nombre;
         int edad;
         double estatura, sueldo;
-        Empleado e;
         while ( !exit )  {
             System.out.println("Introduzca el dni del empleado: ");
             dni = sc.nextLine();
@@ -70,7 +86,7 @@ public class GestionEmpleados {
             estatura = sc.nextDouble();
             System.out.println("Introduzca el salario del empleado: ");
             sueldo = sc.nextDouble();
-            e = new Empleado(dni, nombre, edad, estatura, sueldo);
+            Empleado e = new Empleado(dni, nombre, edad, estatura, sueldo);
             mapaEmpleados.put(dni, e);
             System.out.println(("Introduzca ('x') para salir, o cualquier otra tecla para continuar introduciendo empleados"));
             salir = sc.nextLine();
@@ -110,6 +126,12 @@ public class GestionEmpleados {
             String next =  it.next();
             System.out.println(mapaEmpleados.get(next).toString());
         }
+
+        //  entrySet también se puede iterar
+        // Set<Map.Entry<String, Empleado>> entradas = MapaEmpleados.entrySet();
+        // Iterator<Map.Entry<String, Empleado>> it = entradas.iterator();
+        // entrada.getValue();
+        // Para ver el empleado sout Mapaempleados.get(dni)
     }
 
     public void borrarEmpleados ( ) throws FileNotFoundException, IOException {
@@ -119,6 +141,8 @@ public class GestionEmpleados {
         while (! exit ) {
             System.out.println("Escriba el dni del empleado que desee eliminar, o pulse ('*') para salir");
             dni = sc.nextLine();
+            //if MapaEmpleados.containsKey(dni){
+            //MapaEmpleados.remove(dni)
             if (dni.contains("*")) {
                 exit = true;
             } else {

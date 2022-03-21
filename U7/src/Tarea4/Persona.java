@@ -1,6 +1,8 @@
 package Tarea4;
 
-public class Persona {
+import java.io.Serializable;
+
+public class Persona implements Serializable {
     String dni, nombre;
     int edad;
     double estatura;
@@ -10,6 +12,11 @@ public class Persona {
         this.nombre = nombre;
         this.edad = edad;
         this.estatura = estatura;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public String getDni() {
