@@ -1,6 +1,8 @@
 package Tarea4;
 
-public class Empleado extends Persona {
+import java.io.Serializable;
+
+public class Empleado extends Persona implements Serializable {
     double sueldo;
 
     public Empleado(String dni, String nombre, int edad, double estatura, double sueldo) {
@@ -8,6 +10,12 @@ public class Empleado extends Persona {
         this.sueldo = sueldo;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{ " + super.toString() +
+                " sueldo=" + sueldo +
+                '}';
+    }
 
     public double getSueldo() {
         return sueldo;

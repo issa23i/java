@@ -1,9 +1,16 @@
 package Tarea4;
 
 import java.io.*;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Scanner;
+import java.util.*;
+
+// preguntas :
+
+// linea 20 es incorrecto? en el ejercicio hecho en clase se declara
+// o es así ?? static Map mapaEmp = new LinkedHashMap();
+
+// cuando sale en gris los throws es que realmente no hacen falta? líneas 24, 28, 36...
+
+// excepcion 103 hay que capturarla y poner throws ? las dos cosas?
 
 public class GestionEmpleados implements Serializable {
 
@@ -18,33 +25,87 @@ public class GestionEmpleados implements Serializable {
         menu();
     }
 
+    public static void main(String[] args) throws IOException, ClassNotFoundException, FileNotFoundException {
+        GestionEmpleados gest = new GestionEmpleados();
+    }
+
     /* ------- MÉTODOS --------- */
 
     public void menu () throws FileNotFoundException, ClassNotFoundException, IOException {
-        String entradaTeclado = "";
+        int entradaTeclado = 0;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Introduzca una de las siguientes opciones: ");
-        System.out.println("Cargar fichero de empleados ('f')");
-        System.out.println("Insertar empleados manualmente ('i')");
-        System.out.println("Modificar un empleado ('m')");
-        System.out.println("Visualizar empleado ('v')");
-        System.out.println("Borrar empleado ('b')");
-        entradaTeclado = sc.next();
-        switch (entradaTeclado){
-            case "f":
-                leerArchivo();
-                break;
-            case "i":
-                mapaEmpleados = introducirEmpleados();
-                break;
-            case "m":
-                //cambiar menu
+        do {
+            System.out.println("Introduzca una de las siguientes opciones: ");
+            System.out.println("1 - Cargar empleados de fichero");
+            System.out.println("2 - Insertar empleados ");
+            System.out.println("0 - Terminar entrada de empleados ");
+            entradaTeclado = sc.nextInt();
+            switch (entradaTeclado) {
+                case 1 -> leerArchivo();
+                case 2 -> mapaEmpleados = introducirEmpleados();
+                default -> {
+                }
+            }
+        } while (mapaEmpleados.isEmpty() && entradaTeclado != 0);
 
+        do {
+            entradaTeclado = 0;
 
+            System.out.println("Introduzca una de las siguientes opciones: ");
+            System.out.println("1 - Modificar empleado ");
+            System.out.println("2 - Visualizar listado ");
+            System.out.println("3 - Borrar empleado ");
+            System.out.println("4 - Guardar archivo ");
+            System.out.println("0 - Salir");
+            entradaTeclado = sc.nextInt();
+            switch (entradaTeclado){
+                case 1:
+                    String dni = teclearDNI();
+                    if (buscarEmpleado(dni)){
+                        modificarEmpleado(dni);
+                    }
+                    break;
+                case 2:
+                    visualizarListado();
+                    break;
+                case 3:
+                    borrarEmpleados();
+                    break;
+                case 4:
+                    escribirArchivo();
+                    break;
+                case 0:
+                    entradaTeclado = 0;
+                default:
+                    break;
+            }
+        } while (!mapaEmpleados.isEmpty() && entradaTeclado != 0);
+        visualizarListado();
+    }
+
+    private String teclearDNI (){
+        Scanner sc1 = new Scanner(System.in);
+        String dni = "";
+        System.out.println("Introduzca el dni del empleado a buscar: ");
+        dni = sc1.nextLine();
+        return dni;
+    }
+
+    private boolean buscarEmpleado(String dni) {
+        boolean existe = false;
+        if (dni.isEmpty()) {
+            System.out.println("El dni introducido no es válido o está vacío");
+            return false;
+        } else if (mapaEmpleados.containsKey(dni)) {
+            existe = true;
+            return true;
+        } else {
+            System.out.println("El dni introducido no existe en la lista de empleados");
+            return existe;
         }
     }
 
-    public void modificarEmpleado (String dni ) {
+    public void modificarEmpleado (String dni ) throws InputMismatchException{
         String nombre;
         int edad;
         double estatura, sueldo;
@@ -54,24 +115,40 @@ public class GestionEmpleados implements Serializable {
         System.out.println("Introduzca el nombre del empleado: ");
         nombre = sc.nextLine();
         e.setNombre(nombre);
-        System.out.println("Introduzca la edad del empleado:  ");
-        edad = sc.nextInt();
-        e.setEdad(edad);
-        System.out.println("Introduzca la estatura (en metros) del empleado: ");
-        estatura = sc.nextDouble();
-        e.setEstatura(estatura);
-        System.out.println("Introduzca el salario del empleado: ");
-        sueldo = sc.nextDouble();
-        e.setSueldo(sueldo);
-
-        //// Mapaempleados.put(dni) no lo mete nuevo, lo machaca y modifica0
-
+        try {
+            System.out.println("Introduzca la edad del empleado:  ");
+            edad = sc.nextInt();
+            e.setEdad(edad);
+        } catch (InputMismatchException noVale) {
+            System.out.println("El dato introducido es incorrecto");
+            edad = 0;
+        }
+        try {
+            System.out.println("Introduzca la estatura (en metros) del empleado: ");
+            estatura = sc.nextDouble();
+            e.setEstatura(estatura);
+        } catch (InputMismatchException noVale) {
+            System.out.println("El dato introducido es incorrecto");
+            estatura = 0;
+        }
+        try {
+            System.out.println("Introduzca el salario del empleado: ");
+            sueldo = sc.nextDouble();
+            e.setSueldo(sueldo);
+        } catch (InputMismatchException noVale) {
+            System.out.println("El dato introducido es incorrecto");
+            sueldo = 0;
+        }
+        mapaEmpleados.put(dni,e);
+        //// Mapaempleados.put(dni) no lo mete nuevo, lo machaca y modifica
+        escribirArchivo();
+        visualizarListado();
     }
 
-    public LinkedHashMap<String, Empleado> introducirEmpleados() {
+    public LinkedHashMap<String, Empleado> introducirEmpleados() throws InputMismatchException{
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
-        String salir = " ";
+        int salir = 1;
         String dni, nombre;
         int edad;
         double estatura, sueldo;
@@ -80,20 +157,36 @@ public class GestionEmpleados implements Serializable {
             dni = sc.nextLine();
             System.out.println("Introduzca el nombre del empleado: ");
             nombre = sc.nextLine();
-            System.out.println("Introduzca la edad del empleado:  ");
-            edad = sc.nextInt();
-            System.out.println("Introduzca la estatura (en metros) del empleado: ");
-            estatura = sc.nextDouble();
-            System.out.println("Introduzca el salario del empleado: ");
-            sueldo = sc.nextDouble();
+            try {
+                System.out.println("Introduzca la edad del empleado:  ");
+                edad = sc.nextInt();
+            } catch (InputMismatchException noVale) {
+                System.out.println("El dato introducido es incorrecto");
+                edad = 0;
+            }
+            try {
+                System.out.println("Introduzca la estatura (en metros) del empleado: ");
+                estatura = sc.nextDouble();
+            } catch (InputMismatchException noVale) {
+                System.out.println("El dato introducido es incorrecto");
+                estatura = 0;
+            }
+            try {
+                System.out.println("Introduzca el salario del empleado: ");
+                sueldo = sc.nextDouble();
+            } catch (InputMismatchException noVale) {
+                System.out.println("El dato introducido es incorrecto");
+                sueldo = 0;
+            }
             Empleado e = new Empleado(dni, nombre, edad, estatura, sueldo);
             mapaEmpleados.put(dni, e);
-            System.out.println(("Introduzca ('x') para salir, o cualquier otra tecla para continuar introduciendo empleados"));
-            salir = sc.nextLine();
-            if (salir.contains("x")) {
+            System.out.println(("Introduzca 0 para salir, o cualquier otra tecla para continuar introduciendo empleados"));
+            salir = sc.nextInt();
+            if (salir == 0) {
                 exit = true;
             }
         }
+        escribirArchivo();
         visualizarListado();
         return mapaEmpleados;
     }
@@ -121,17 +214,20 @@ public class GestionEmpleados implements Serializable {
     }
 
     public void visualizarListado (){
-        Iterator<String> it = mapaEmpleados.keySet().iterator();
+        Set<Map.Entry<String, Empleado>> entradas = mapaEmpleados.entrySet();
+         Iterator<Map.Entry<String, Empleado>> it = entradas.iterator();
         while (it.hasNext()) {
-            String next =  it.next();
-            System.out.println(mapaEmpleados.get(next).toString());
+            Map.Entry<String, Empleado> next =  it.next();
+            System.out.println(next.getValue());
         }
-
-        //  entrySet también se puede iterar
+        // otra forma de hacerlo:
         // Set<Map.Entry<String, Empleado>> entradas = MapaEmpleados.entrySet();
-        // Iterator<Map.Entry<String, Empleado>> it = entradas.iterator();
-        // entrada.getValue();
-        // Para ver el empleado sout Mapaempleados.get(dni)
+        //    Iterator<Map.Entry<String, Empleado>> it = entradas.iterator();
+        //
+        //    while (it.hasNext()) {
+        //      Map.Entry<String, Empleado> entrada = it.next();
+        //      System.out.println(entrada.getValue());
+        //    }
     }
 
     public void borrarEmpleados ( ) throws FileNotFoundException, IOException {
@@ -141,17 +237,10 @@ public class GestionEmpleados implements Serializable {
         while (! exit ) {
             System.out.println("Escriba el dni del empleado que desee eliminar, o pulse ('*') para salir");
             dni = sc.nextLine();
-            //if MapaEmpleados.containsKey(dni){
-            //MapaEmpleados.remove(dni)
-            if (dni.contains("*")) {
-                exit = true;
-            } else {
-                for (String s: mapaEmpleados.keySet()
-                ) {
-                    if (s.equals(dni)){
-                        mapaEmpleados.remove(dni);
-                    }
-                }
+            if (dni.equals("*")){
+                return;
+            } else if(buscarEmpleado(dni)) {
+                mapaEmpleados.remove(dni);
             }
         }
         escribirArchivo();
