@@ -5,12 +5,13 @@ import java.util.*;
 
 // preguntas :
 
-// linea 20 es incorrecto? en el ejercicio hecho en clase se declara
+// linea 24 es incorrecto? en el ejercicio hecho en clase se declara
 // o es así ?? static Map mapaEmp = new LinkedHashMap();
 
-// cuando sale en gris los throws es que realmente no hacen falta? líneas 24, 28, 36...
+// cuando sale en gris los throws es que realmente no hacen falta? líneas 25, 29, 35...
 
-// excepcion 103 hay que capturarla y poner throws ? las dos cosas?
+// excepcion 109 hay que capturarla y poner throws ? las dos cosas?
+// porque no funcionan las excepciones¿¿ 109 y 149
 
 public class GestionEmpleados implements Serializable {
 
