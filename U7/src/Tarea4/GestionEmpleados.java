@@ -181,7 +181,7 @@ public class GestionEmpleados implements Serializable {
             }
             Empleado e = new Empleado(dni, nombre, edad, estatura, sueldo);
             mapaEmpleados.put(dni, e);
-            System.out.println(("Introduzca 0 para salir, o cualquier otra tecla para continuar introduciendo empleados"));
+            System.out.println(("Introduzca 0 para salir, o cualquier otra número para continuar introduciendo empleados"));
             salir = sc.nextInt();
             if (salir == 0) {
                 exit = true;
