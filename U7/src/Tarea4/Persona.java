@@ -16,7 +16,11 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString();
+        return
+                "dni='" + dni + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", estatura=" + estatura ;
     }
 
     public String getDni() {

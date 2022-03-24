@@ -10,6 +10,12 @@ public class Empleado extends Persona implements Serializable {
         this.sueldo = sueldo;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{ " + super.toString() +
+                " sueldo=" + sueldo +
+                '}';
+    }
 
     public double getSueldo() {
         return sueldo;

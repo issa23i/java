@@ -2,7 +2,7 @@ public abstract class Agrupacion {
     private String nombre, autor, autorMusica, autorLetras, disfraz;
     protected static Integer numAgrupacion = 0;
 
-    public Agrupacion(String nombre, String autor, String autorMusica, String autorLetras, String disfraz) {
+    public Agrupacion (String nombre, String autor, String autorMusica, String autorLetras, String disfraz) {
         numAgrupacion++;
         this.nombre = nombre;
         this.autor = autor;
