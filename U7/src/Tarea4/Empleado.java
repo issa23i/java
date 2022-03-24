@@ -1,6 +1,8 @@
 package Tarea4;
 
-public class Empleado extends Persona {
+import java.io.Serializable;
+
+public class Empleado extends Persona implements Serializable {
     double sueldo;
 
     public Empleado(String dni, String nombre, int edad, double estatura, double sueldo) {

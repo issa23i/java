@@ -1,0 +1,6 @@
+Descarga la clase que se adjunta.
+Estudia cómo funciona, debuguea, y haz las modificaciones que sean necesarias para que
+el programa funcione correctamente en todos los casos.
+
+Prueba el funcionamiento del método numberToText para distintos casos,
+por ejemplo: 3, 55, 345, 14, 118
