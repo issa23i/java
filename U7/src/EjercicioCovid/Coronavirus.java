@@ -2,12 +2,10 @@ package EjercicioCovid;
 
 
 import java.io.Serializable;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
-public abstract class  Coronavirus implements Serializable, Comparable<Cepa> {
-    private Map<Cepa, Set<Paciente>> contagiados;
+public abstract class  Coronavirus  {
+    private Map<Cepa, Set<Paciente>> mapaContagiados;
     private static final String VIRUS = "SARS-COV2";
     private static final String ORIGEN = "WUHAN";
 
@@ -18,37 +16,93 @@ public abstract class  Coronavirus implements Serializable, Comparable<Cepa> {
 //    en el conjunto de pacientes infectados por una cepa concreta un paciente que no se haya infectado de esa cepa.
 //
     public void addPaciente (Cepa cepa, Paciente paciente) {
+        if (!encontrarPaciente(paciente)) {
+            mapaContagiados.get(cepa).add(paciente);
+        } else {
+            System.out.println("El paciente " + paciente.toString() + " está contagiado por la cepa " + cepa.toString());
+        }
+    }
 
+    public boolean encontrarPaciente (Paciente paciente) {
+        boolean pacienteContagiado = false;
+        Iterator<Map.Entry<Cepa,Set<Paciente>>> it = mapaContagiados.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Cepa, Set<Paciente>> nextCepa =  it.next();
+            if (nextCepa.getValue().contains(paciente)) {
+                // ha encontrado el paciente en otra cepa
+                pacienteContagiado = true;
+            }
+        }
+        return pacienteContagiado;
     }
 
 //    El método darDeAltaPaciente() que recibe como parámetro un paciente y lo da de alta,
 //    borrándolo de la estructura de datos que contienen los datos de los infectados.
 //    En caso de que el paciente no se encuentre, deberá mostrar el siguiente mensaje "No se ha encontrado el paciente".
 //
+    public void darDeAltaPaciente(Paciente paciente) {
+        if (encontrarPaciente(paciente)) {
+            Iterator<Map.Entry<Cepa,Set<Paciente>>> it = mapaContagiados.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Cepa, Set<Paciente>> nextCepa =  it.next();
+                nextCepa.getValue().remove(paciente);
+            }
+        } else {
+            System.out.println("No se ha encontrado el paciente");
+        }
+    }
 //    El método pacientesDeUnDoctor() que mostrará por pantalla todos los pacientes
-//(sean de la cepa que sean) de un médico/a determinado. Este método recibe como parámetro
+//    (sean de la cepa que sean) de un médico/a determinado. Este método recibe como parámetro
 //    el número de colegiado y mostrará el mensaje "Este médico/a no lleva ningún paciente"
 //    en caso de que el médico/a no tenga ningún paciente de esta epidemia.
+    public void pacidentesDeUnDoctor(Medico medico){
+        boolean medicoSinPacientesContagiados = true;
+        Iterator<Map.Entry<Cepa,Set<Paciente>>> itMapa = mapaContagiados.entrySet().iterator();
+        while (itMapa.hasNext()) {
+            Map.Entry<Cepa, Set<Paciente>> nextCepa =  itMapa.next();
+            Set<Paciente> pacientes = nextCepa.getValue();
+            Iterator<Paciente> itPacientes = pacientes.iterator();
+            while (itPacientes.hasNext()) {
+                Paciente nextPaciente =  itPacientes.next();
+                if (nextPaciente.getDoctor().equals(medico)){
+                    medicoSinPacientesContagiados = false;
+                    System.out.println(nextPaciente.toString());
+                }
+            }
+        }
+        if (medicoSinPacientesContagiados) {
+            System.out.println("Este médico/a no lleva ningún paciente");
+        }
+    }
+
 //    El método pacientesporPeso() que mostrará la lista de pacientes de una cepa, que se recibe como parámetro,
 //    ordenados por peso de manera decreciente.
+
+    public void pacientesporPeso(Cepa cepa) {
+        TreeSet<Paciente> pacientes = new TreeSet<>();
+        pacientes.addAll(mapaContagiados.get(cepa));
+        System.out.println(pacientes.toString());
+    }
 //
 //    El método pacientesporEdad() que mostrará la lista de pacientes de una cepa, que se recibe como parámetro,
 //    ordenados por edad de manera decreciente
-//
-//    Cuando hay un epidemia, las infecciones de los pacientes se realizan en varios días, y para no perder los datos de todos los pacientes,
-//    debemos también de tener dos métodos en la clase:
-//
+    public void pacientesporEdad (Cepa cepa) {
+        TreeSet<Paciente> pacientes = new TreeSet<>(new Comparator<Paciente>() {
+            @Override
+            public int compare(Paciente o1, Paciente o2) {
+                return o1.getEdad()-o2.getEdad();
+            }
+        });
+        pacientes.addAll(mapaContagiados.get(cepa));
+        System.out.println(pacientes.toString());
+    }
+
 //    cargarPacientes() que leerá todos los pacientes desde el fichero binario "pacientes.dat"
 //    y los colocará en la estructura de datos.
 //
+
+
 //    guardarPacientes() que escribirá todos los pacientes en el fichero "pacientes.dat".
 
 
-    public Map<Cepa, Set<Paciente>> getContagiados() {
-        return contagiados;
-    }
-
-    public void setContagiados(Map<Cepa, Set<Paciente>> contagiados) {
-        this.contagiados = contagiados;
-    }
 }

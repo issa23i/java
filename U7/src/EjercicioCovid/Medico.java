@@ -14,6 +14,7 @@ import java.util.Set;
 public class Medico implements Serializable, Comparable<Medico> {
     private String nombreDr, apellidosDr, hospital;
     private Integer numColegiado;
+    private Set<Paciente> pacientes;
 
     public Medico(String nombreDr, String apellidosDr, String hospital, Integer numColegiado) {
         this.nombreDr = nombreDr;

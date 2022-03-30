@@ -101,6 +101,6 @@ public class Paciente implements Serializable, Comparable<Paciente>{
 
     @Override
     public int compareTo(Paciente o) {
-        return this.getNombrePaciente().compareTo(o.getNombrePaciente());
+        return this.getPeso().compareTo(o.getPeso());
     }
 }
