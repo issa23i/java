@@ -1,32 +1,42 @@
 import java.io.Serializable;
 
-public class Criptomoneda extends Divisa implements Serializable {
-    private Double precio, volumenTrsc;
-    private Integer ranking;
+public class Criptomoneda extends Divisa {
     private String fecha;
+    private Integer volumen24h;
+    private Double precioUSD;
+    private Integer ranking;
 
-    public Criptomoneda(String nombre, String simbolo, Double precio, Double volumenTrsc, Integer ranking, String fecha) {
+    public Criptomoneda(String nombre, String simbolo) {
         super(nombre, simbolo);
-        this.precio = precio;
-        this.volumenTrsc = volumenTrsc;
-        this.ranking = ranking;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + ranking;
+    }
+
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Integer getVolumen24h() {
+        return volumen24h;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setVolumen24h(Integer volumen24h) {
+        this.volumen24h = volumen24h;
     }
 
-    public Double getVolumenTrsc() {
-        return volumenTrsc;
+    public Double getPrecioUSD() {
+        return precioUSD;
     }
 
-    public void setVolumenTrsc(Double volumenTrsc) {
-        this.volumenTrsc = volumenTrsc;
+    public void setPrecioUSD(Double precioUSD) {
+        this.precioUSD = precioUSD;
     }
 
     public Integer getRanking() {
@@ -35,23 +45,5 @@ public class Criptomoneda extends Divisa implements Serializable {
 
     public void setRanking(Integer ranking) {
         this.ranking = ranking;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + "Criptomoneda{" +
-                "precio=" + precio +
-                ", volumenTrsc=" + volumenTrsc +
-                ", ranking=" + ranking +
-                ", fecha='" + fecha + '\'' +
-                '}';
     }
 }

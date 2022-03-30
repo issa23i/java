@@ -7,7 +7,9 @@
 package EjercicioCovid;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class Medico implements Serializable, Comparable<Medico> {
     private String nombreDr, apellidosDr, hospital;

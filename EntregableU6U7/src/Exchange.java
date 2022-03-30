@@ -1,125 +1,77 @@
 
-import java.io.*;
 import java.util.*;
 
-public class Exchange implements Serializable {
-    private static final String fichero = "cotizaciones.dat";
-    private TreeSet<Divisa> divisas;
-    private TreeSet<ParCotizacion> parCotizacions;
-    private Map<Divisa, Set<ParCotizacion>> mapa = new HashMap<>();
+public class Exchange {
+    Map<Divisa, Set<ParCotizacion>> mapa = new HashMap<>();
 
-    public Exchange(TreeSet<Divisa> divisas, TreeSet<ParCotizacion> parCotizacions) {
-        this.divisas = divisas;
-        this.parCotizacions = parCotizacions;
-    }
-
-    public void guardarCotizaciones(){
-        try (ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream( fichero))){
-            out.writeObject(mapa);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void recuperarCotizaciones(){
-        try (ObjectInputStream in = new ObjectInputStream( new FileInputStream(fichero))){
-            mapa = (Map<Divisa, Set<ParCotizacion>> ) in.readObject();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private List<Divisa> convertirALista (Set<Divisa> divisas){
-        List<Divisa> divisaList = new ArrayList<>();
-        divisaList  = divisas.stream().toList();
-        return divisaList;
-    }
-
-    // mostrarDivisasOrdenadas() que muestra todas las divisas ordenadas por símbolo.
-    public void mostrarDivisasOrdenadas(){
-        List<Divisa> divisaList = new ArrayList<>();
-        convertirALista(divisas).sort(new Comparator<Divisa>() {
-            @Override
-            public int compare(Divisa o1, Divisa o2) {
-                return o1.getSimbolo().compareTo(o2.getSimbolo());
-            }
-        });
-        Iterator<Divisa> it = convertirALista(divisas).iterator();
-        while (it.hasNext()) {
-            Divisa next =   it.next();
-            System.out.println(next.toString());
-        }
-    }
-//
-//
-    // obtenerCotizaciones(String simbolo) recibe como parámetro el símbolo de una divisa base,
-    // y devuelve un conjunto de todos los pares de cotización asociados con ella.
-    public TreeSet<ParCotizacion> obtenerCotizaciones(String simbolo){
-
-        TreeSet<ParCotizacion> setParesCot = new TreeSet<>();
-        Iterator<Divisa> it = convertirALista(divisas).iterator();
-        while (it.hasNext()) {
-            Divisa next = it.next();
-            if (next.getSimbolo().equals(simbolo)) {
-                if (mapa.containsKey(next)) {
-                    setParesCot.addAll(mapa.get(next));
-                }
-            }
-        }
-        return setParesCot;
-    }
-
-    // mostrarCotizacionesAlAlzaUnaHora() que muestra todos los pares de cotización en los que
-    // la divisa base tiene una cotización superior a 0. Es decir, que el porcentaje de variación en la última hora es mayor que cero.
-    public void mostrarCotizacionesAlAlzaUnaHora(){
-        // muestra Set<parCotizacion>
-        Set<Map.Entry<Divisa,Set<ParCotizacion>>> setTmp = mapa.entrySet();
-        Iterator<Map.Entry<Divisa, Set<ParCotizacion>>> it = setTmp.iterator();
-        while (it.hasNext()) {
-            Map.Entry<Divisa, Set<ParCotizacion>> next =  it.next();
-            Iterator<ParCotizacion> itParC = next.getValue().iterator();
-            while (itParC.hasNext()) {
-                ParCotizacion parCotizacion =  itParC.next();
-                if (parCotizacion.getVariacionPorcentual()>0){
-                    System.out.println(parCotizacion.toString());
-                }
-            }
-        }
-    }
-
-
-    // addCotizacion(ParCotizacion cotizacion) que añade un par de cotización con los que puede
-    // operar nuestra Exchange
     public void addCotizacion(ParCotizacion cotizacion) {
-        parCotizacions.add(cotizacion);
+        Divisa base = cotizacion.getBase();
+
+        if (mapa.containsKey(base)) {
+            mapa.get(base).add(cotizacion);
+        } else {
+            Set<ParCotizacion> conjunto_pares = new LinkedHashSet<>();
+            conjunto_pares.add(cotizacion);
+            mapa.put(base, conjunto_pares);
+        }
     }
 
+    public Set<ParCotizacion> obtenerCotizaciones(String simbolo) {
+        Set<ParCotizacion> conjunto_pares = new LinkedHashSet<>();
 
-    public Set<Divisa> getDivisas() {
-        return divisas;
+        Iterator<Divisa> it = mapa.keySet().iterator();
+        while (it.hasNext()) {
+            Divisa base = it.next();
+            if (base.getSimbolo().equals(simbolo)) {
+                conjunto_pares = mapa.get(base);
+            }
+        }
+        return conjunto_pares;
     }
 
-    public void setDivisas(TreeSet<Divisa> divisas) {
-        this.divisas = divisas;
+    public void mostrarDivisasOrdenadas() {
+        TreeSet<Divisa> conjunto_ordenado = new TreeSet<>(mapa.keySet());
+        System.out.println(conjunto_ordenado);
     }
 
-    public Set<ParCotizacion> getParCotizacions() {
-        return parCotizacions;
+    public void mostrarCotizacionesAlAlzaUnaHora() {
+        Iterator<Map.Entry<Divisa, Set<ParCotizacion>>> it = mapa.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Divisa, Set<ParCotizacion>> entrada = it.next();
+
+            Iterator<ParCotizacion> it_cotizaciones = entrada.getValue().iterator();
+            while (it_cotizaciones.hasNext()) {
+                ParCotizacion par_cotizacion = it_cotizaciones.next();
+                if (par_cotizacion.getVariacion24h() > 0) {
+                    System.out.println(par_cotizacion);
+                }
+            }
+        }
     }
 
-    public void setParCotizacions(TreeSet<ParCotizacion> parCotizacions) {
-        this.parCotizacions = parCotizacions;
-    }
+    public void mostrarCotizacionesAlAlzaUnaHora_Joserra() {
+        // Esto serviría para mostrar, pero no para BORRAR
+        Set<Map.Entry<Divisa, Set<ParCotizacion>>> conjunto = mapa.entrySet();
+        for (Map.Entry<Divisa, Set<ParCotizacion>> entrada : conjunto) {
+            for (ParCotizacion par : entrada.getValue()) {
+                if (par.getVariacion24h() > 0) {
+                    System.out.println(par);
+                }
+            }
+        }
 
-    public Map<Divisa, Set<ParCotizacion>> getMapa() {
-        return mapa;
-    }
-
-    public void setMapa(Map<Divisa, Set<ParCotizacion>> mapa) {
-        this.mapa = mapa;
+        // Para borrar, SIEMPRE con iteradores.
+        //    Iterator<Map.Entry<Divisa, Set<ParCotizacion>>> it = mapa.entrySet().iterator();
+        //    while (it.hasNext()) {
+        //      Map.Entry<Divisa, Set<ParCotizacion>> entrada = it.next();
+        //
+        //      Iterator<ParCotizacion> it_cotizaciones = entrada.getValue().iterator();
+        //      while (it_cotizaciones.hasNext()) {
+        //        ParCotizacion par_cotizacion = it_cotizaciones.next();
+        //        if (par_cotizacion.getVariacion24h() > 0) {
+        //          it_cotizaciones.remove();  // <<< AQUÍ SE BORRA
+        //        }
+        //      }
+        //    }
     }
 }

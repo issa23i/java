@@ -1,13 +1,42 @@
 import java.io.Serializable;
 
-public class Divisa implements Serializable {
-    private String nombre, simbolo;
-    private static Integer id = 0;
+import java.util.Objects;
+
+public abstract class Divisa implements Comparable<Divisa> {
+
+    //
+    private String nombre;
+    private String simbolo;
+    private Integer id;
+    private static Integer contador = 0;
 
     public Divisa(String nombre, String simbolo) {
-        this.nombre = nombre;
-        this.simbolo = simbolo;
-        id++;
+        setNombre(nombre);
+        setSimbolo(simbolo);
+        this.id = contador++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Divisa)) return false;
+        Divisa divisa = (Divisa) o;
+        return Objects.equals(simbolo, divisa.simbolo) && Objects.equals(id, divisa.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(simbolo, id);
+    }
+
+    @Override
+    public int compareTo(Divisa divisa) {
+        return getSimbolo().compareTo(divisa.getSimbolo());
+    }
+
+    @Override
+    public String toString() {
+        return simbolo;
     }
 
     public String getNombre() {
@@ -22,23 +51,19 @@ public class Divisa implements Serializable {
         return simbolo;
     }
 
-    private void setSimbolo(String simbolo) {
+    public void setSimbolo(String simbolo) {
         this.simbolo = simbolo;
     }
 
-    public static Integer getId() {
+    public Integer getId() {
         return id;
     }
 
-    public static void setId(Integer id) {
-        Divisa.id = id;
+    public static Integer getContador() {
+        return contador;
     }
 
-    @Override
-    public String toString() {
-        return "Divisa{" +
-                "nombre='" + nombre + '\'' +
-                ", simbolo='" + simbolo + '\'' +
-                '}';
+    public static void setContador(Integer contador) {
+        Divisa.contador = contador;
     }
 }

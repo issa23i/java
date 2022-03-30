@@ -1,0 +1,53 @@
+Queremos desarrollar una aplicación para la gestión de infectados por Coronavirus a nivel nacional.
+Para ello crearemos una clase llamada Coronavirus en donde guardaremos todos los infectados por el virus,
+el nombre científico del virus (COVID-19) y la localidad de origen (Wuhan).
+
+Tendremos que crear la estructura de datos necesaria para acceder mediante el código de la cepa
+(que es un carácter y es único), al conjunto de pacientes de esa cepa.
+
+De cada uno de los pacientes debemos guardar la siguiente lista de atributos:
+
+El nombre del paciente.
+La edad (un entero, no hace falta que sea una fecha de nacimiento).
+El peso del paciente.
+Si tienen o no tienen todas las vacunas requeridas.
+El médico/a que sigue su tratamiento
+Y por supuesto la cepa con la que se infectó.
+
+De los médicos/as de los pacientes, deberemos guardar a su vez los siguiente datos:
+El nombre.
+Los apellidos.
+El número de colegiado.
+El hospital donde ejerce.
+La clase tiene que tener los siguientes métodos.
+
+Un método addPaciente() que recibe como parámetros la cepa y un posible infectado (paciente)
+y que añadirá a la estructura de datos el paciente con la cepa determinada
+o mostrará un mensaje de error en caso de que estemos intentando introducir
+en el conjunto de pacientes infectados por una cepa concreta un paciente que no se haya infectado de esa cepa.
+
+El método darDeAltaPaciente() que recibe como parámetro un paciente y lo da de alta,
+borrándolo de la estructura de datos que contienen los datos de los infectados.
+En caso de que el paciente no se encuentre, deberá mostrar el siguiente mensaje "No se ha encontrado el paciente".
+
+El método pacientesDeUnDoctor() que mostrará por pantalla todos los pacientes
+(sean de la cepa que sean) de un médico/a determinado. Este método recibe como parámetro
+el número de colegiado y mostrará el mensaje "Este médico/a no lleva ningún paciente"
+en caso de que el médico/a no tenga ningún paciente de esta epidemia.
+El método pacientesporPeso() que mostrará la lista de pacientes de una cepa, que se recibe como parámetro,
+ordenados por peso de manera decreciente.
+
+El método pacientesporEdad() que mostrará la lista de pacientes de una cepa, que se recibe como parámetro,
+ordenados por edad de manera decreciente
+
+Cuando hay un epidemia, las infecciones de los pacientes se realizan en varios días, y para no perder los datos de todos los pacientes,
+debemos también de tener dos métodos en la clase:
+
+cargarPacientes() que leerá todos los pacientes desde el fichero binario "pacientes.dat"
+y los colocará en la estructura de datos.
+
+guardarPacientes() que escribirá todos los pacientes en el fichero "pacientes.dat".
+
+En todas las clases, todos los atributos deberán ser privados y se crearán los get/set que sean necesarios.
+
+Usar dicha clase y todos sus métodos en la la clase Main. Deberéis tener, al menos, 3 cepas, 10 pacientes y 3 médicos (combinados de la manera que queráis).

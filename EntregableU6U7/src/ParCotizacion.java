@@ -1,30 +1,53 @@
 import java.io.Serializable;
 
-public class ParCotizacion implements Serializable {
-    private Divisa divisaBase, divisaCotizada;
-    private Double precio, variacionPorcentual;
+import java.util.Objects;
 
-    public ParCotizacion(Divisa divisaBase, Divisa divisaCotizada, Double precio, Double variacionPorcentual) {
-        this.divisaBase = divisaBase;
-        this.divisaCotizada = divisaCotizada;
-        this.precio = precio;
-        this.variacionPorcentual = variacionPorcentual;
+public class ParCotizacion {
+
+    private Divisa base;
+    private Divisa cotizada;
+    private Double precio;
+    private Double variacion24h;
+
+    public ParCotizacion(Divisa base, Divisa cotizada, Double precio, Double variacion24h) {
+        setBase(base);
+        setCotizada(cotizada);
+        setPrecio(precio);
+        setVariacion24h(variacion24h);
     }
 
-    public Divisa getDivisaBase() {
-        return divisaBase;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ParCotizacion)) return false;
+        ParCotizacion that = (ParCotizacion) o;
+        return Objects.equals(base, that.base) && Objects.equals(cotizada, that.cotizada);
     }
 
-    public void setDivisaBase(Divisa divisaBase) {
-        this.divisaBase = divisaBase;
+    @Override
+    public int hashCode() {
+        return Objects.hash(base, cotizada);
     }
 
-    public Divisa getDivisaCotizada() {
-        return divisaCotizada;
+    @Override
+    public String toString() {
+        return base + "/" + cotizada + " " + precio;
     }
 
-    public void setDivisaCotizada(Divisa divisaCotizada) {
-        this.divisaCotizada = divisaCotizada;
+    public Divisa getBase() {
+        return base;
+    }
+
+    public void setBase(Divisa base) {
+        this.base = base;
+    }
+
+    public Divisa getCotizada() {
+        return cotizada;
+    }
+
+    public void setCotizada(Divisa cotizada) {
+        this.cotizada = cotizada;
     }
 
     public Double getPrecio() {
@@ -35,11 +58,11 @@ public class ParCotizacion implements Serializable {
         this.precio = precio;
     }
 
-    public Double getVariacionPorcentual() {
-        return variacionPorcentual;
+    public Double getVariacion24h() {
+        return variacion24h;
     }
 
-    public void setVariacionPorcentual(Double variacionPorcentual) {
-        this.variacionPorcentual = variacionPorcentual;
+    public void setVariacion24h(Double variacion24h) {
+        this.variacion24h = variacion24h;
     }
 }

@@ -1,30 +1,22 @@
 import java.io.Serializable;
 
-public class Fiat extends Divisa implements Serializable , Comparable<Fiat>{
-    private String pais;
-
-    public Fiat(String nombre, String simbolo, String pais) {
-        super(nombre, simbolo);
-        this.pais = pais;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
+public class Fiat extends Divisa {
+    private String pais_referencia;
 
     @Override
     public String toString() {
-        return super.toString() + " Fiat{" +
-                "pais='" + pais + '\'' +
-                '}';
+        return super.toString() + " " + pais_referencia;
     }
 
-    @Override
-    public int compareTo(Fiat o) {
-        return this.getNombre().compareTo(o.getNombre());
+    public Fiat(String nombre, String simbolo) {
+        super(nombre, simbolo);
+    }
+
+    public String getPais_referencia() {
+        return pais_referencia;
+    }
+
+    public void setPais_referencia(String pais_referencia) {
+        this.pais_referencia = pais_referencia;
     }
 }
