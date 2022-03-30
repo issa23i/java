@@ -1,14 +1,18 @@
 package EjercicioCovid;
 
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
-public abstract class  Coronavirus  {
+public class  Coronavirus  {
     private Map<Cepa, Set<Paciente>> mapaContagiados;
     private static final String VIRUS = "SARS-COV2";
     private static final String ORIGEN = "WUHAN";
+    private static final String FICHERO = "pacientes.dat";
 
+    public Coronavirus() {
+        this.mapaContagiados = new TreeMap<>();
+    }
 
     //    Un método addPaciente() que recibe como parámetros la cepa y un posible infectado (paciente)
 //    y que añadirá a la estructura de datos el paciente con la cepa determinada
@@ -16,7 +20,11 @@ public abstract class  Coronavirus  {
 //    en el conjunto de pacientes infectados por una cepa concreta un paciente que no se haya infectado de esa cepa.
 //
     public void addPaciente (Cepa cepa, Paciente paciente) {
-        if (!encontrarPaciente(paciente)) {
+        if (paciente.getCepa().equals(cepa)) { // si el paciente está infectado por esta cepa
+            if (mapaContagiados.get(cepa) == null) { // si la cepa no está aún en el mapa creada
+                mapaContagiados.put(cepa, new HashSet<Paciente>());
+                mapaContagiados.get(cepa).add(paciente);
+            }
             mapaContagiados.get(cepa).add(paciente);
         } else {
             System.out.println("El paciente " + paciente.toString() + " está contagiado por la cepa " + cepa.toString());
@@ -79,30 +87,72 @@ public abstract class  Coronavirus  {
 //    ordenados por peso de manera decreciente.
 
     public void pacientesporPeso(Cepa cepa) {
-        TreeSet<Paciente> pacientes = new TreeSet<>();
-        pacientes.addAll(mapaContagiados.get(cepa));
-        System.out.println(pacientes.toString());
+        if (cepa == null ) {
+            mapaContagiados.put(cepa, new HashSet<Paciente>());
+        }
+        try {
+            TreeSet<Paciente> pacientes = new TreeSet<>();
+            pacientes.addAll(mapaContagiados.get(cepa));
+            System.out.println(pacientes.toString());
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("la cepa " + cepa.toString() + " no ha sido insertada aún.");
+        }
+
     }
 //
 //    El método pacientesporEdad() que mostrará la lista de pacientes de una cepa, que se recibe como parámetro,
 //    ordenados por edad de manera decreciente
     public void pacientesporEdad (Cepa cepa) {
-        TreeSet<Paciente> pacientes = new TreeSet<>(new Comparator<Paciente>() {
-            @Override
-            public int compare(Paciente o1, Paciente o2) {
-                return o1.getEdad()-o2.getEdad();
-            }
-        });
-        pacientes.addAll(mapaContagiados.get(cepa));
-        System.out.println(pacientes.toString());
+        if (cepa == null ) {
+            mapaContagiados.put(cepa, new HashSet<Paciente>());
+        }
+        try {
+            TreeSet<Paciente> pacientes = new TreeSet<>(new Comparator<Paciente>() {
+                @Override
+                public int compare(Paciente o1, Paciente o2) {
+                    return o1.getEdad()-o2.getEdad();
+                }
+            });
+            pacientes.addAll(mapaContagiados.get(cepa));
+            System.out.println(pacientes.toString());
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("la cepa " + cepa.toString() + " no ha sido insertada aún.");
+        }
     }
 
 //    cargarPacientes() que leerá todos los pacientes desde el fichero binario "pacientes.dat"
 //    y los colocará en la estructura de datos.
 //
+    public void cargarPacientes() {
+        try(ObjectInputStream in = new ObjectInputStream( new FileInputStream(FICHERO))){
+            mapaContagiados = (Map<Cepa, Set<Paciente>>) in.readObject();
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }  catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
 
+    }
 
 //    guardarPacientes() que escribirá todos los pacientes en el fichero "pacientes.dat".
 
+    public void guardarPacientes() {
+        try (ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(FICHERO))){
+            out.writeObject(mapaContagiados);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
 
+    public Map<Cepa, Set<Paciente>> getMapaContagiados() {
+        return mapaContagiados;
+    }
+
+    public void setMapaContagiados(Map<Cepa, Set<Paciente>> mapaContagiados) {
+        this.mapaContagiados = mapaContagiados;
+    }
 }

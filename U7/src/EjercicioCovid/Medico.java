@@ -55,6 +55,14 @@ public class Medico implements Serializable, Comparable<Medico> {
         this.numColegiado = numColegiado;
     }
 
+    public Set<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
     @Override
     public String toString() {
         return "Medico{" +

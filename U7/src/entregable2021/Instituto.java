@@ -48,7 +48,7 @@ public abstract class Instituto implements Serializable {
     }
     public void mostrarTodosAlumnosOrdenados(){
         ArrayList<Alumno> alnos = new ArrayList<Alumno>(alumnos.values());
-        alnos.sort(new ComparaAlumnoApellido());
+      //  alnos.sort(new ComparaAlumnoApellido());
         Iterator<Alumno> it = alnos.iterator();
         while (it.hasNext()) {
             Alumno next =  it.next();

@@ -50,4 +50,5 @@ guardarPacientes() que escribirá todos los pacientes en el fichero "pacientes.d
 
 En todas las clases, todos los atributos deberán ser privados y se crearán los get/set que sean necesarios.
 
-Usar dicha clase y todos sus métodos en la la clase Main. Deberéis tener, al menos, 3 cepas, 10 pacientes y 3 médicos (combinados de la manera que queráis).
+Usar dicha clase y todos sus métodos en la la clase Main. Deberéis tener, al menos, 3 cepas, 10 pacientes y 3 médicos
+(combinados de la manera que queráis).
