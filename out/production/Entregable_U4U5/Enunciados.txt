@@ -1,0 +1,81 @@
+Ejercicio 1
+Queremos gestionar nuestra colección completa de Pelicula, Serie y Libro,
+así que vamos a desarrollar una aplicación web.
+Para ello, primeramente vamos a desarrolar la estructura interna
+que nos permita gestionarlo todo.
+Tendremos una serie de elementos Multimedia, que son los siguientes:
+
+De las Pelicula queremos conocer:
+
+Título
+Director/a
+Año de estreno
+Duración
+Productora
+País
+De las Serie queremos conocer:
+
+Título
+Creador/a de la serie
+Número de temporadas
+Array con los capítulos. Cada capítulo en sí será simplemente un String del tipo "S01E01".
+Año de estreno
+Tendremos que implementar los métodos:
+
+add_capitulo(String capitulo): que añade un capítulo al final del array de capítulos.
+No devuelve nada
+eliminar_capitulo(String capitulo): que busca el capítulo que se le pasa, y lo elimina del array.
+Devuelve true si lo ha eliminado, false si no lo ha eliminado (porque no exista el capítulo pasado, por ejemplo).
+De los Libro queremos conocer:
+
+Título
+Autor
+Año de publicación
+Editorial
+Identificador ISBN
+Número de páginas.
+Son todos, elementos Multimedia.
+No puede existir un elemento Multimedia individual, sino que tiene que ser uno particular, concreto.
+En todo momento queremos guardar de ellos lo siguiente:
+
+Tienen un identificador único que se genera automáticamente al crear el elemento,
+increméntalo en 1 cada vez que se crea un elemento nuevo. Este identificador se debe GENERAR
+y mantener dentro de la clase Multimedia, es decir, no se puede pasar por parámetro. Además,
+el identificador DEBE ser un parámetro del objeto, no una propiedad de la clase.
+Saber si ha sido finalizado o no (si el elemento ha sido leído o visto, en definitiva)
+Podremos por tanto, para un elemento Multimedia, dar_por_finalizado().
+Se tendrá que implementar este método.
+Bastará con un mensaje por pantalla indicando que se ha marcado como finalizado, con el título del elemento.
+
+Tanto las Películas como las Series deberán implementar la interfaz Reproducible,
+que declara los métodos play() , pause() y stop().
+La implementación en sí de cada una de las películas o series, mostrará los siguientes mensajes:
+
+"Reproduciendo película XXXXX"
+"Parando película XXXXX"
+"Pausando película XXXXX"
+"Reproduciendo serie XXXXX, capítulo YYYY"
+"Parando serie XXXXX, capítulo YYYY"
+"Pausando serie XXXXX, capítulo YYYY"
+En el caso de las series, si se quiere probar, el capítulo a "reproducir/parar/pausar" será uno aleatorio.
+
+Posteriormente, tendremos una clase Catalogo (no se ha puesto la tilde deliberadamente), donde almacenaremos un array de elementos Multimedia. Por tanto, tendrá los siguientes métodos:
+
+add_multimedia(Multimedia elemento). Que añade un elemento multimedia al final del array de elementos multimedia. No devuelve nada.
+eliminar_multimedia(Multimedia elemento). Que elimina el elemento multimedia que se le pasa. Devuelve true si lo ha eliminado, false si no lo ha eliminado (porque no exista el elemento pasado, por ejemplo).
+ordenar_por_id(). Ordena el catálogo por el identificador único.
+ordenar_por_titulo(). Ordena el catálogo por el título de la obra.
+ordenar_por_anyo(). Ordena el catálogo por el año de publicación/estreno
+numero_de_elementos(). Devuelve el número de elementos Multimedia creados
+Todas las clases tendrán sus atributos private, y se pondrán public o protected donde proceda. Igualmente, todas las clases tendrán que reimplementar el método toString() para poder imprimirse por pantalla cuando corresponda.
+
+Los atributos deberán tener asociados todos los Getters y Setters correspondientes, aunque no se utilicen.
+
+Deberás decidir qué constructores necesitas según el enunciado.
+
+Deberás decidir qué atributos van en la superclase y cuáles quedan en la subclase.
+
+Se deberá crear un Main con todos los objetos necesarios para probar todos los métodos a excepción de los Getters y Setters.
+
+NOTA: Para cada uno de los ejercicios se bajará un 20% del mismo por cada error sintáctico corregido por el profesor para que el ejercicio pudiera funcionar correctamente. Se tendrá también en cuenta la eficiencia de los algoritmos.
+

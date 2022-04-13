@@ -1,0 +1,85 @@
+Deseamos desarrollar una aplicación que nos sirva para gestionar las distintas Agrupacion del Carnaval de Cádiz, estén o no en el Concurso Oficial de Agrupaciones Carnavalescas (COAC).
+
+Necesitamos por tanto, almacenar la información de los siguientes tipos de Agrupacion:
+
+Coro:
+Nombre
+Autor
+Autor de la música
+Autor de las letras
+Tipo (disfraz)
+Número de bandurrias
+Número de guitarras
+Puntos obtenidos
+Comparsa:
+Nombre
+Autor
+Autor de la música
+Autor de las letras
+Tipo (disfraz)
+Empresa de atrezzo
+Puntos obtenidos
+Chirigota:
+Nombre
+Autor
+Autor de la música
+Autor de las letras
+Tipo (disfraz)
+Número de cuplés
+Puntos obtenidos
+Cuarteto:
+Nombre
+Autor
+Autor de la música
+Autor de las letras
+Tipo (disfraz)
+Número de miembros
+Puntos obtenidos
+Romancero:
+Nombre
+Autor
+Autor de la música
+Autor de las letras
+Tipo (disfraz)
+Temática del cartelón
+Todas las Agrupacion tienen que cantar_la_presentacion() (mostrar por pantalla un mensaje que sea "Cantando la presentación de la Chirigota/Coro/... con nombre XXXXX") y tienen que hacer_tipo() (mostrar pon pantalla un mensaje que sea "La Chirigota/Coro/....XXXXX va de YYYYY"), siendo XXXXX el nombre de la agrupación e YYYYY el tipo (disfraz) de la agrupación. Las Agrupacion de por sí no pueden existir a secas, sino que tiene que ser una de las formas anteriormente presentadas. Igualmente, las cuatro primeras (Coro, Comparsa, Chirigota, Cuarteto) se presentan al concurso oficial COAC, luego son un tipo de estas, es decir son, AgrupacionOficial. Y tampoco pueden existir por sí mismas, tienen que ser una de las cuatro posibles.
+
+Las AgrupacionOficial del COAC, tienen que poder gestionar los integrantes que la forman, por lo que tendrán dos métodos:
+
+void insertar_integrante(Integrante i): Añade un integrante i a la agrupación oficial.
+boolean eliminar_integrante(Integrante i): Eliminar integrante i de la agrupación oficial. Devolverá true si lo eliminó o false en caso contrario.
+Por tanto, es necesario implementar también la clase Integrante, que simplemente almacenará el numero_participante , nombre, edad y localidad del participante.
+
+Cualquier AgrupacionOficial tendrá que implementar obligatoriamente el método caminito_del_falla() que simplemente mostrará un mensaje por pantalla diciendo "El/la coro/comparsa/chirigota/cuarteto XXXXX va caminito del falla" según corresponda, siendo XXXXX el nombre de la agrupación.
+
+Adicionalmente, las Chirigota, Cuarteto y Romancero son un tipo de agrupaciones especiales que también podemos ver en la calle, por lo que implementan la  Callejera, que incluye un único método amo_a_escucha(). En cada una de las clases se implemente esta interfaz, el método simplemente mostrará por pantalla "Amo a escucha la Chirigota/Cuarteto/Romanero XXXXX", siendo XXXXX el nombre de la agrupación.
+
+Las Agrupacion se ordenan por defecto por el nombre. Adicionalmente, se quiere ordenar por el autor, y las AgrupacionOficial también se quieren ordenar por puntos (PERO OJO, QUE NO ES SU ORDENACIÓN POR DEFECTO).
+
+Implementa una clase COAC con los siguientes métodos:
+
+void inscribir_agrupacion(AgrupacionOficial agrupacion): Inscribe la agrupación en el concurso, añadiéndola a un array de elementos de tipo AgrupacionOficial.
+boolean eliminar_agrupacion(AgrupacionOficial agrupacion): Elimina a la agrupación en el concurso, eliminándola del array. Devolverá true si lo eliminó o false en caso contrario.
+void ordenar_por_puntos(): Ordena el array por los puntos obtenidos.
+void ordenar_por_nombre(): Ordena el array por el nombre de la agrupación.
+void ordenar_por_autor(): Ordena el array por el autor de la agrupación.
+Adicionalmente a esto, e independientemente del COAC, se desea conocer en todo momento el número de Agrupacion totales que se han creado, participen o no en el concurso. Añade el/los atributos y método/s necesarios para conocer dicho dato.
+
+Deberás decidir qué constructores necesitas según el enunciado.
+
+Deberás decidir qué atributos van en la/s superclase/s y cuáles quedan en la subclase/s.
+
+Todas las clases deben ser imprimibles, es decir, implementar el método toString():
+
+Se deberá crear un Main con todos los objetos necesarios para probar todos los métodos a excepción de los Getters y Setters.
+
+NOTA: Para cada uno de los ejercicios se bajará un 20% del mismo por cada error sintáctico corregido por el profesor para que el ejercicio pudiera funcionar correctamente. Se tendrá también en cuenta la eficiencia de los algoritmos.
+
+Instrucciones para la Entrega
+Entregar ÚNICA Y EXCLUSIVAMENTE los ficheros necesarios. Serán ficheros sueltos, correspondientes al ejercicio.
+
+EL fichero comprimido se llamará Apellido1_Apellido2_U4_U5_Examen.zip (o .rar)
+
+Evita ñ y acentos en los nombres.
+
+Deberán subirse a GitHub los ficheros en la carpeta correspondiente (U4U5_Examen) que se encontrará dentro de la carpeta U5.

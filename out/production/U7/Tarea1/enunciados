@@ -1,0 +1,29 @@
+Tarea 1 - List + Set
+Actividad 1: Crear una colección de 20 números enteros aleatorios menores que 100,
+y guardarlos en el orden en que se vayan generando; mostrar por pantalla dicha lista una vez creada.
+Ordenarla en sentido creciente y volverla a mostrar por pantalla.
+
+Actividad 2: Repetir el ejercicio anterior, pero ordenar la lista en sentido decreciente.
+
+Actividad 3: Crear una colección de 20 números enteros aleatorios menores que 10,
+guardarlos por orden decreciente a medida que se vayan generando y mostrar la colección por pantalla.
+
+Actividad 4: Introducir por consola una frase que conste exclusivamente de palabras separadas por espacios.
+Almacenar en una lista las palabras de la frase,
+una en cada nodo y mostrar por pantalla las palabras que estén repetidas. A continuación, mostrar las que no lo estén.
+
+Actividad 5: Crear una colección de 20 números enteros aleatorios distintos menores que 100,
+guardarlos por orden decreciente a medida que se vayan generando, y mostrar la colección por pantalla.
+
+Actividad 6: Introducir por teclado, hasta que se introduzca "fin",
+una serie de nombres que se insertarán en una colección, de forma que se conserve el orden de inserción
+y que no puedan repetirse. Mostrar la estructura por pantalla.
+
+Actividad 7: Introducir por teclado, hasta que se introduzca "fin",
+una serie de nombres que se insertarán por orden alfabético en una colección que no permita repeticiones.
+Mostrar luego la lista de nombres por pantalla.
+
+Actividad 8: Implementar una función a la que se le pase una lista de nombres
+y devuelva una copia sin elementos repetidos (sin modificar la original), con el prototipo:
+
+List eliminaRepetidos (List c)

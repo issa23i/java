@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Compiled class file
 *.class
 
@@ -56,3 +57,25 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java
 >>>>>>> refs/remotes/choose_remote_name/MIOISA
+=======
+/Aprende a programar con Java (2ª ed.).pdf
+/out/production/U4/tarea1/Banco.class
+/out/production/U4/tarea1/Bombilla.class
+/out/production/U4/tarea1/CuentaCorriente.class
+/out/production/U4/tarea1/ejercicio10/Hora.class
+/out/production/U4/tarea1/ejercicio9/JefesEstacion.class
+/out/production/U4/tarea2/Lista.class
+/out/production/U4/tarea1/ejercicio9/Locomotoras.class
+/out/production/U4/tarea1/ejercicio10/Main.class
+/out/production/U4/tarea2/Main.class
+/out/production/U4/tarea1/ejercicio9/Maquinistas.class
+/out/production/U4/tarea1/ejercicio9/Mecanicos$enumEspecialidad.class
+/out/production/U4/tarea1/ejercicio9/Mecanicos.class
+/out/production/U4/tarea2/PilaTabla.class
+/out/production/U4/tarea1/SDEFM.class
+/out/production/U4/tarea1/tarea1.class
+/out/production/U4/tarea1/Texto.class
+/out/production/U4/tarea1/ejercicio9/Trenes.class
+/out/production/U4/tarea1/ejercicio9/Vagones.class
+/U4/src/Entregable21_22/Pastor_Lopez_U4_T1_Entrega.zip
+>>>>>>> refs/remotes/choose_remote_name/master
